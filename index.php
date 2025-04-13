@@ -15,15 +15,15 @@
         <h3>Selecione seu genero</h3>    
         <div style="display:flex; gap:2rem">
             <div style="display:flex">
-                <input type="radio" name="gender" value="Male">
+                <input type="radio" required name="gender" value="Male">
                 <p>Homem</p>
             </div>
             <div style="display:flex">
-                <input type="radio" name="gender" value="Female">
+                <input type="radio" required name="gender" value="Female">
                 <p>Mulher</p>
             </div>
             <div style="display:flex">
-                <input type="radio" name="gender" value="Other">
+                <input type="radio" required name="gender" value="Other">
                 <p>Outro</p>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 $random = rand(-2,2);
                 foreach ($question['options'] as $option): ?>
                 <div style="display:flex">
-                    <input type="radio" name="<?=$question['id']?>" value="<?=$option['value']?>" <?php if($random==$option['value']){echo "checked";}?>>
+                    <input required type="radio" name="<?=$question['id']?>" value="<?=$option['value']?>" <?php if($random==$option['value']){echo "checked";}?>>
                     <p><?=$option['text']?></p>
                 </div>
                 <?php endforeach;?>

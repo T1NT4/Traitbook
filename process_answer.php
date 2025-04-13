@@ -39,36 +39,12 @@ curl_close($ch);
 
 $response = json_decode($responseraw,true);
 
-$raw_page = file_get_contents($response["ogLink"]);
+require_once __DIR__."/Controller/ApiController.php";
 
-$start_name_needle = '<meta property="og:title" content="';
-$loc_start_name = strpos($raw_page,$start_name_needle);
+$ApiController = new ApiController();
 
-$name_with_rest_of_page = substr($raw_page, $loc_start_name+strlen($start_name_needle));
-
-$loc_start_classification = strpos($name_with_rest_of_page,'(');
-
-$niceName = substr($name_with_rest_of_page, 0, $loc_start_classification-1);
-
-
-
-
-$start_data_needle = ':data="';
-$loc_start_data =  strpos($raw_page,$start_data_needle);
-
-$data_with_rest_of_page = substr($raw_page, $loc_start_data+strlen($start_data_needle));
-
-$loc_start_rest_of_page = strpos($data_with_rest_of_page,'fullTypeHtml');
-
-$data_raw = substr($data_with_rest_of_page, 0, $loc_start_rest_of_page-7);
-$data_raw = $data_raw. "}";
-$data_raw = html_entity_decode($data_raw);
-
-
-$data = json_decode($data_raw, true, 512, JSON_THROW_ON_ERROR);
-
+$data = $ApiController->getDataFrom16PersonalitiesLink($response['ogLink'])
 ?>
 
-<p></p>
-<p><?=$niceName?></p>
-
+<img src="<?=$data['details']['cards']['personality']['imageSrc']?>" alt="<?=$data['details']['cards']['personality']['imageAlt']?>" width="200">
+<p><?=$data['personalityShort']?></p>
