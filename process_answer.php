@@ -48,6 +48,27 @@ $name_with_rest_of_page = substr($raw_page, $loc_start_name+strlen($start_name_n
 
 $loc_start_classification = strpos($name_with_rest_of_page,'(');
 
+$niceName = substr($name_with_rest_of_page, 0, $loc_start_classification-1);
 
-$niceName = substr($name_with_rest_of_page, 0, $loc_start_classification-1)
+
+
+
+$start_data_needle = ':data="';
+$loc_start_data =  strpos($raw_page,$start_data_needle);
+
+$data_with_rest_of_page = substr($raw_page, $loc_start_data+strlen($start_data_needle));
+
+$loc_start_rest_of_page = strpos($data_with_rest_of_page,'fullTypeHtml');
+
+$data_raw = substr($data_with_rest_of_page, 0, $loc_start_rest_of_page-7);
+$data_raw = $data_raw. "}";
+$data_raw = html_entity_decode($data_raw);
+
+
+$data = json_decode($data_raw, true, 512, JSON_THROW_ON_ERROR);
+
 ?>
+
+<p></p>
+<p><?=$niceName?></p>
+
