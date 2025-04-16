@@ -50,7 +50,7 @@ if(!empty($_POST)){
     <input required type="password" name="password" placeholder="confirme a senha">
     <div>
     <label for="foto-perfil">nova foto de perfil: </label>
-    <input required type="file" name="foto-perfil" accept="image/jpg, image/jpeg, image/png">
+    <input required type="file" name="foto-perfil" accept="image/jpg, image/jpeg, image/png, image/gif">
     </div>    
     
     <button type="submit">Atualizar foto de perfil</button>
