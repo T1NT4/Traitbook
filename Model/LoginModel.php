@@ -5,54 +5,81 @@ class LoginModel{
     function __construct($pdo){
         $this->pdo = $pdo;
     }
-    function cadastrarConta($username,$password,$data_de_registro, $nome_arquivo_fotoperfil){
+    function cadastrarConta($username, $password, $data_de_registro, $nome_arquivo_fotoperfil) {
         $sql = "SELECT * FROM contas WHERE username = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$username]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if(empty($results)){
-            $sql = "INSERT INTO contas(username,password, data_de_registro, nome_arquivo_fotoperfil) VALUES (?,?,?,?)";
+
+        if (empty($results)) {
+            // Hash the password before saving it
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO contas(username, password, data_de_registro, nome_arquivo_fotoperfil) VALUES (?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$username,$password,$data_de_registro,$nome_arquivo_fotoperfil]);
+            $stmt->execute([$username, $hashedPassword, $data_de_registro, $nome_arquivo_fotoperfil]);
+
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
     public function listarContaPorUsername($username) {
         $sql = "SELECT * FROM contas WHERE username = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$username]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
+
     public function listarContaPorID($id_user) {
         $sql = "SELECT * FROM contas WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id_user]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
-    public function confirmarSenha($username,$password){
-        $sql = "SELECT * FROM contas WHERE username = ? AND password = ?";
+
+    public function confirmarSenha($username, $password) {
+        $sql = "SELECT * FROM contas WHERE username = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$username, $password]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute([$username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return [];
     }
-    public function updateUser($id_user,$password){
+
+    public function updateUser($id_user, $password) {
+        // Hash the new password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $sql = "UPDATE contas SET password = ? WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$password,$id_user]);
+        $stmt->execute([$hashedPassword, $id_user]);
     }
-    public function logIn($username, $password){
-        $sql = "SELECT * FROM contas WHERE username = ? AND password = ?";
+
+    public function logIn($username, $password) {
+        $sql = "SELECT * FROM contas WHERE username = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$username,$password]);
-        $stmt = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $stmt;
+        $stmt->execute([$username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return [];
     }
     public function updateFotoPerfil($id_user,$nome_arquivo_fotoperfil){
         $sql = "UPDATE contas SET nome_arquivo_fotoperfil = ? WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$nome_arquivo_fotoperfil,$id_user]);
+    }
+    public function updateLinkPersonalidade($id_user,$link_personalidade){
+        $sql = "UPDATE contas SET link_personalidade = ? WHERE id_user = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$link_personalidade,$id_user]);
     }
     // public function atualizarPlano($username,$plano){
     //     $sql = "UPDATE Contas SET plano = ? WHERE username = ?";

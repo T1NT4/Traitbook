@@ -27,6 +27,9 @@ class LoginController{
     public function updateFotoPerfil($id_user,$nome_arquivo_fotoperfil){
         return $this->LoginModel->updateFotoPerfil($id_user,$nome_arquivo_fotoperfil);
     }
+    public function updateLinkPersonalidade($id_user,$link_personalidade){
+        return $this->LoginModel->updateLinkPersonalidade($id_user,$link_personalidade);
+    }
     // public function atualizarPlanoDoUsuario($username,$plano){
     //     return $this->LoginModel->atualizarPlano($username,$plano);
     // }

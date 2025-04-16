@@ -40,7 +40,7 @@ if(!empty($_POST)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <link rel="shortcut icon" href="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" type="image/png">
-    <title>Hobbly - Mudar foto de perfil</title>
+    <title>Mudar foto de perfil</title>
 </head>
 <body>
     <section class="marginend marginstart">

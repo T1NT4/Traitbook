@@ -39,12 +39,18 @@ curl_close($ch);
 
 $response = json_decode($responseraw,true);
 
-require_once __DIR__."/Controller/ApiController.php";
+require_once __DIR__."/config.php";
+require_once __DIR__."/Controller/LoginController.php";
 
-$ApiController = new ApiController();
+$Controller = new LoginController($pdo);
 
-$data = $ApiController->getDataFrom16PersonalitiesLink($response['ogLink'])
+$Controller->updateLinkPersonalidade($_COOKIE['id_user'],$response['ogLink']);
+
+header("Location: usuario.php");
 ?>
 
+<!-- 
+FOTINHA DO PERSONAGEM EM PÉ
 <img src="<?=$data['details']['cards']['personality']['imageSrc']?>" alt="<?=$data['details']['cards']['personality']['imageAlt']?>" width="200">
-<p><?=$data['personalityShort']?></p>
+NOME DA PERSONALIDADE
+<p><?=$data['personalityShort']?></p> -->
