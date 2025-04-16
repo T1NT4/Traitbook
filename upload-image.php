@@ -21,7 +21,7 @@ $extensao = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
 $caminho_final = $diretorio . basename($username.".png");
 $nome_arquivo_fotoperfil = str_replace($diretorio,"",$caminho_final);
 // Verifica se o arquivo é uma imagem e seu tamanho é permitido (5MB no exemplo)
-$tipos_permitidos = ['jpg', 'jpeg', 'png'];
+$tipos_permitidos = ['jpg', 'jpeg', 'png', 'gif'];
 $extensao = strtolower(pathinfo($caminho_final, PATHINFO_EXTENSION));
 
 $error_code = null;

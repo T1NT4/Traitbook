@@ -5,7 +5,7 @@ class LoginModel{
     function __construct($pdo){
         $this->pdo = $pdo;
     }
-    function cadastrarConta($username, $password, $data_de_registro, $nome_arquivo_fotoperfil) {
+    function cadastrarConta($username, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero) {
         $sql = "SELECT * FROM contas WHERE username = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$username]);
@@ -15,9 +15,9 @@ class LoginModel{
             // Hash the password before saving it
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO contas(username, password, data_de_registro, nome_arquivo_fotoperfil) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO contas(username, email, password, data_de_registro, nome_arquivo_fotoperfil, aniversario, genero) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$username, $hashedPassword, $data_de_registro, $nome_arquivo_fotoperfil]);
+            $stmt->execute([$username, $email, $hashedPassword, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero]);
 
             return true;
         } else {
@@ -62,6 +62,15 @@ class LoginModel{
 
     public function logIn($username, $password) {
         $sql = "SELECT * FROM contas WHERE username = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+
+        $sql = "SELECT * FROM contas WHERE email = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);

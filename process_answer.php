@@ -1,6 +1,11 @@
 <?php
+require_once __DIR__."/config.php";
+require_once __DIR__."/Controller/LoginController.php";
 
-$gender = $_POST['gender'];
+$Controller = new LoginController($pdo);
+$user = $Controller->listarContaPorID($_COOKIE['id_user']);
+
+$gender = $user['genero'];
 $answers = [];
 
 foreach($_POST as $key => $value){

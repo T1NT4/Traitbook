@@ -6,14 +6,17 @@ $Controller = new LoginController($pdo);
 
 if (!empty($_POST)) {
     $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
+    $genero = $_POST['gender'];
     $currentdatetime = new DateTime('now');
     $data_de_registro = $currentdatetime->format("Y-m-d H:i:s" . ".000000");
+    $aniversario = $_POST['aniversario'];
 
     $imagem_arquivo = $_FILES['foto-perfil'];
     include __DIR__ . '/upload-image.php';
 
-    $cadastrou = $Controller->cadastrarConta($username, $password, $data_de_registro, $nome_arquivo_fotoperfil);
+    $cadastrou = $Controller->cadastrarConta($username, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
     $error_code = 0;
 
     if ($cadastrou && $error_code == null) {
@@ -37,11 +40,35 @@ if (!empty($_POST)) {
     
             <form method="POST" enctype="multipart/form-data">
                 <input required type="text" name="username" placeholder="nome de usuário">
+                <br>
+                <input required type="email" name="email" placeholder="seu e-mail">
+                <br>
                 <input required type="password" name="password" placeholder="senha">
+                <br>
+                <div style="display:flex; gap:2rem">
+                    <p>Selecione seu genêro:</p>
+                    <div style="display:flex">
+                        <input type="radio" required name="gender" value="Male">
+                        <p>Homem</p>
+                    </div>
+                    <div style="display:flex">
+                        <input type="radio" required name="gender" value="Female">
+                        <p>Mulher</p>
+                    </div>
+                    <div style="display:flex">
+                        <input type="radio" required name="gender" value="Other">
+                        <p>Outro</p>
+                    </div>
+                </div>
+                <div>
+                    <label for="aniversario">coloque sua data de nascimento (opcional):</label>
+                    <input type="date" name="aniversario">
+                </div>
                 <div>
                     <label for="foto-perfil">foto de perfil (opcional): </label>
                     <input type="file" name="foto-perfil" accept="image/jpg, image/jpeg, image/png">
                 </div>
+
 
 
                 <button type="submit">Cadastrar Conta</button>

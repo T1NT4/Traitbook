@@ -17,22 +17,6 @@ if(!isset($_COOKIE['id_user'])){
     ?>
 
     <form action="process_answer.php" method="POST">
-        <h3>Selecione seu genero</h3>    
-        <div style="display:flex; gap:2rem">
-            <div style="display:flex">
-                <input type="radio" required name="gender" value="Male">
-                <p>Homem</p>
-            </div>
-            <div style="display:flex">
-                <input type="radio" required name="gender" value="Female">
-                <p>Mulher</p>
-            </div>
-            <div style="display:flex">
-                <input type="radio" required name="gender" value="Other">
-                <p>Outro</p>
-            </div>
-        </div>
-
         <?php foreach ($questions as $question): ?>
             <h3><?=$question['text']?></h3>
             <div style="display:flex; gap:2rem">

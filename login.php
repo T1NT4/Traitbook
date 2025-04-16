@@ -5,7 +5,7 @@ include_once __DIR__."/config.php";
 $Controller = new LoginController($pdo);
 
 if(!empty($_POST)){
-    $username = $_POST['username'];
+    $username = $_POST['username_or_email'];
     $password = $_POST['password'];
 
     $logged_in = $Controller->logIn($username, $password);
@@ -16,6 +16,8 @@ if(!empty($_POST)){
         
         header("Location: usuario.php");
     }
+
+
 }
 ?>
 
@@ -31,7 +33,7 @@ if(!empty($_POST)){
 <body>
 
     <form method="POST">
-        <input required type="text" name="username" placeholder="nome de usuário">
+        <input required type="text" name="username_or_email" placeholder="nome de usuário ou email">
         <input required type="password" name="password" placeholder="senha">
         
         <button type="submit">Login</button>
