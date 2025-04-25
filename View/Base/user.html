@@ -15,7 +15,6 @@
             <img src="../fotos_de_perfil/T1NT4.png">
         </div>
     </header>
-    
     <section>
         <div class="flex-row height-400">
             <div class="glass grow-150 flex-row align-start ">
@@ -23,7 +22,7 @@
                     <img src="../fotos_de_perfil/T1NT4.png">
                 </div>
                 <br>
-                <div class="flex-column nogap">
+                <div class="flex-column nogap grow-100">
                     <h3>Nome de usuário:</h3>
                     <h1>PHPNOME</h1>
                     <br>
@@ -39,16 +38,28 @@
                     <h3>Data de nascimento:</h3>
                     <h1>PHPNASCIMENTO</h1>
                     <br>
-                    <a class="button glass" href="edit_perfil.php">
+                    <a class="button glass self-align-center" href="edit_perfil.php">
                         <h1>Editar Perfil</h1>
                     </a>
                 </div>
             </div>
-            <div class="glass grow-100"></div>
+            <div class="glass flex-column">
+                <h1 class="maxwidth450px">Sobre mim:</h1>
+                <p class="maxwidth100 grow-100 maxwidth450px">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid eaque voluptatem assumenda dolor consectetur. Beatae laborum illum reprehenderit ipsa alias quos, quo quas facere veritatis commodi nisi nostrum deleniti necessitatibus delectus excepturi quod voluptatem mollitia quidem ab, id aliquid! Molestias laborum commodi in illo modi! Alias magnam error eaque iusto fugit pariatur dolores, quo architecto incidunt non eius vitae temporibus nobis nemo praesentium reprehenderit deserunt possimus fugiat repudiandae et, molestiae ipsum dolorum reiciendis ea? Voluptates nulla ad alias atque voluptatem distinctio vero optio amet expedita numquam soluta eos et similique voluptatibus nostrum id, non tempora nisi rerum enim. Eius, excepturi!</p>
+            </div>
         </div>
         <div class="flex-row height-200">
-            <div class="glass grow-100"></div>
-            <div class="glass grow-100"></div>
+            <div class="glass width-100po flex-column">
+                <h1>Pontos fortes:</h1>
+                <h3>-Handsome</h3>
+                <h3>-Handsome</h3>
+                <h3>-Handsome</h3>
+                <h3>-Handsome</h3>
+            </div>
+            <div class="glass width-100po flex-column">
+                <h1>Pontos fracos:</h1>
+                <h3>-Só apareco por 1 minuto no jogo</h3>
+            </div>
         </div>
         <div class="flex-row height-400">
             <div class="glass grow-100"></div>
@@ -68,10 +79,10 @@
         <div class="background-img"></div>
     </div>
     <script>
-        const body = document.body;
-        const html = document.documentElement;
+        var body = document.body;
+        var html = document.documentElement;
 
-        const height = Math.max(
+        var height = Math.max(
         body.scrollHeight,
         body.offsetHeight,
         html.clientHeight,
