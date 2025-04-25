@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../imgs//Logo-Traitbook.svg">
+        </div>
+        <div class="pfp mini">
+            <img src="../fotos_de_perfil/T1NT4.png">
+        </div>
+    </header>
+    
+    <section>
+        <div class="flex-row height-400">
+            <div class="glass grow-150 flex-row align-start ">
+                <div class="pfp">
+                    <img src="../fotos_de_perfil/T1NT4.png">
+                </div>
+                <br>
+                <div class="flex-column nogap">
+                    <h3>Nome de usuário:</h3>
+                    <h1>PHPNOME</h1>
+                    <br>
+                    <h3>Nome:</h3>
+                    <h1>PHPNOMEINTEIRO</h1>
+                    <br>
+                    <h3>Email:</h3>
+                    <h1>PHPEMAIL</h1>
+                    <br>
+                    <h3>Genêro:</h3>
+                    <h1>PHPGENERO</h1>
+                    <br>
+                    <h3>Data de nascimento:</h3>
+                    <h1>PHPNASCIMENTO</h1>
+                    <br>
+                    <a class="button glass" href="edit_perfil.php">
+                        <h1>Editar Perfil</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="glass grow-100"></div>
+        </div>
+        <div class="flex-row height-200">
+            <div class="glass grow-100"></div>
+            <div class="glass grow-100"></div>
+        </div>
+        <div class="flex-row height-400">
+            <div class="glass grow-100"></div>
+            <div class="glass grow-150"></div>
+        </div>
+        <div class="flex-row height-500">
+            <div class="grow-100 flex-column">
+                <div class="glass grow-100"></div>
+                <div class="glass grow-100"></div>
+                <div class="glass grow-100"></div>
+            </div>
+            <div class="glass grow-200"></div>
+        </div>
+    </section>
+    <div class="background" id="background">
+        <div class="background-img"></div>
+        <div class="background-img"></div>
+    </div>
+    <script>
+        const body = document.body;
+        const html = document.documentElement;
+
+        const height = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+        );
+
+        document.getElementById('background').style.height = height.toString()+"px"
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root{
+    --primary-color:#D1D1FA;
+    --secondary-color:#5D5FEF;
+    --terciary-color:#14148D;
+    --text-color:#e8e8fc;
+}
+body{
+    background: linear-gradient(150deg,  var(--secondary-color) -100%, var(--terciary-color) 50%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
+    color: var(--text-color);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: #5D5FEF;
+    padding: 10px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.logo img{
+    color:var(--primary-color)
+}
+.background{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+.background-img{
+    width: 250px;
+    max-width: 50vw;
+    aspect-ratio: 5/1;
+    min-height: 100%;
+    background-image: url('../imgs/Background-Traitbook.png');
+    background-size: 100%;
+    background-repeat:repeat-y;
+    animation: background-scroll 250000s infinite linear,
+                background-pulse 15s infinite cubic-bezier(0.25,0,0,0.25);
+}
+.background-img:last-child{
+    scale: -1 -1;
+}
+@keyframes  background-scroll {
+    0%{
+        background-position: 0 0%;
+    }
+    100%{
+        background-position: 0 10000000%;
+    }
+}
+@keyframes background-pulse {
+    0%{
+        
+        transform: translateX(0px);
+    }
+    50%{
+        
+        transform: translateX(-100px);
+    }
+    100%{
+        
+        transform: translateX(0px);
+    }
+}
+
+section{
+    margin:0 30px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+a{
+    color:var(--text-color);
+}
+a.button{
+    text-decoration: none;
+}
+.button.glass{
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: none;
+}
+.button.glass:hover{
+    background-color: rgba(255,255,255,0.2);
+}
+.glass{
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(7px);
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(123, 123, 123, 0.3);
+    box-sizing: border-box;
+    padding:15px
+}
+.flex-row{
+    display: flex;
+    gap:inherit;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    gap:inherit;
+}
+.nogap{
+    gap: 0 !important;
+}
+.marginbot25{
+    margin-bottom: ;
+}
+.justify-start{
+    justify-content: start;
+}
+.align-start{
+    align-items: start;
+}
+.height-100{
+    height: 100px;
+}
+.height-200{
+    height: 200px;
+}
+.height-300{
+    height: 300px;
+}
+.height-400{
+    height: 400px;
+}
+.height-500{
+    height: 500px;
+}
+.grow-100{
+    flex-grow: 1;
+    height: 100%;
+}
+.grow-125{
+    flex-grow: 1.25;
+    height: 100%;
+}
+.grow-150{
+    flex-grow: 1.50;
+    height: 100%;
+}
+.grow-175{
+    flex-grow: 1.75;
+    height: 100%;
+}
+.grow-200{
+    flex-grow: 2.00;
+    height: 100%;
+}
+.pfp{
+    width: 200px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+.mini.pfp{
+    width: 75px;
+}
+.pfp img{
+    width: auto;
+    height: 100%;
+}
