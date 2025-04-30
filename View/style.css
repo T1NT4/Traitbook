@@ -47,7 +47,7 @@ header{
     max-width: 50vw;
     aspect-ratio: 5/1;
     min-height: 100%;
-    background-image: url('../imgs/Background-Traitbook.png');
+    background-image: url('../View/imgs/Background-Traitbook.png');
     background-size: 100%;
     background-repeat:repeat-y;
     animation: background-scroll 750000s infinite linear,
@@ -58,10 +58,10 @@ header{
 }
 @keyframes  background-scroll {
     0%{
-        background-position: 0 0%;
+        background-position: 0 0vh;
     }
     100%{
-        background-position: 0 10000000%;
+        background-position: 0 10000000vh;
     }
 }
 @keyframes background-pulse {
@@ -202,6 +202,7 @@ a.button{
 }
 .pfp{
     width: 200px;
+    max-width: 20vw;
     aspect-ratio: 1/1;
     overflow: hidden;
     display: flex;
