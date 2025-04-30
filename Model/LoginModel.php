@@ -5,7 +5,7 @@ class LoginModel{
     function __construct($pdo){
         $this->pdo = $pdo;
     }
-    function cadastrarConta($username, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero) {
+    function cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero) {
         $sql = "SELECT * FROM contas WHERE username = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$username]);
@@ -15,9 +15,9 @@ class LoginModel{
             // Hash the password before saving it
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO contas(username, email, password, data_de_registro, nome_arquivo_fotoperfil, aniversario, genero) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO contas(username, nome_inteiro, email, password, data_de_registro, nome_arquivo_fotoperfil, aniversario, genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$username, $email, $hashedPassword, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero]);
+            $stmt->execute([$username, $fullname, $email, $hashedPassword, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero]);
 
             return true;
         } else {

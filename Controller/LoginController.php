@@ -6,8 +6,8 @@ class LoginController{
     function __construct($pdo){
         $this->LoginModel = new LoginModel($pdo);
     }
-    function cadastrarConta($username, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero){
-        return $this->LoginModel->cadastrarConta($username, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
+    function cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero){
+        return $this->LoginModel->cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
     }
     public function listarContaPorUsername($username) {
         return $this->LoginModel->listarContaPorUsername($username);

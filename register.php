@@ -6,6 +6,7 @@ $Controller = new LoginController($pdo);
 
 if (!empty($_POST)) {
     $username = $_POST['username'];
+    $fullname = $_POST['fullname'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $genero = $_POST['gender'];
@@ -16,7 +17,7 @@ if (!empty($_POST)) {
     $imagem_arquivo = $_FILES['foto-perfil'];
     include __DIR__ . '/upload-image.php';
 
-    $cadastrou = $Controller->cadastrarConta($username, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
+    $cadastrou = $Controller->cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
     $error_code = 0;
 
     if ($cadastrou && $error_code == null) {
@@ -40,6 +41,8 @@ if (!empty($_POST)) {
     
             <form method="POST" enctype="multipart/form-data">
                 <input required type="text" name="username" placeholder="nome de usuário">
+                <br>
+                <input required type="text" name="fullname" placeholder="nome inteiro">
                 <br>
                 <input required type="email" name="email" placeholder="seu e-mail">
                 <br>
