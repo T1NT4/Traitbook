@@ -138,7 +138,7 @@ $tem_pontos_fracos_ou_fortes = ($user['pontos_fortes'] != null) OR ($user['ponto
                 <div class="glass width-200po flex-row flex-wrap-at-760">
                     <div class="flex-column width-100po">
                         <h1>Personalidade: <?=$personalidade['personalityShort']?></h1>
-                        <div id="lottie-animation" style="width:400px; max-width: 80vw;">
+                        <div id="lottie-animation" style="width:400px; max-width: 75vw;">
                             <?=$svgData?>
                         </div>
                         <a target="_blank" href="<?=$user['link_personalidade']?>">Link da personalidade no site oficial da 16Personalities</a>
