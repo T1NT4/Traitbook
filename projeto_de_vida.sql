@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2025 at 03:52 AM
+-- Generation Time: May 01, 2025 at 01:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,10 +30,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `contas` (
   `id_user` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `nome_inteiro` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `data_de_registro` datetime NOT NULL,
+  `aniversario` date NOT NULL,
+  `genero` enum('Other','Male','Female') NOT NULL,
   `nome_arquivo_fotoperfil` varchar(255) DEFAULT NULL,
-  `link_personalidade` varchar(255) NOT NULL
+  `link_personalidade` varchar(255) NOT NULL,
+  `sobre_mim` text NOT NULL,
+  `pontos_fracos` text NOT NULL,
+  `pontos_fortes` text NOT NULL,
+  `profissao_atual` varchar(255) NOT NULL,
+  `minhas_aspiracoes` varchar(255) NOT NULL,
+  `meus_principais_objetivos` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -54,7 +64,7 @@ ALTER TABLE `contas`
 -- AUTO_INCREMENT for table `contas`
 --
 ALTER TABLE `contas`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

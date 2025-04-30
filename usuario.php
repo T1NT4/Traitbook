@@ -11,7 +11,9 @@ $LoginController = new LoginController($pdo);
 
 $user = $LoginController->listarContaPorID($_COOKIE['id_user']);
 
-
+if($user == null){
+    header("Location: user-actions/logout.php");
+}
 
 if ($user['link_personalidade'] == ""){
     $personalidade = null;    
@@ -170,7 +172,7 @@ $tem_pontos_fracos_ou_fortes = ($user['pontos_fortes'] != null) OR ($user['ponto
                 </div>
             <?php else:?>
                 <div class="glass width-100po justify-center flex-row">
-                    <a class="button glass self-align-center" href="../../teste-de-personalidade.php">
+                    <a class="button glass self-align-center" href="teste-de-personalidade.php">
                         <h1>Fazer o teste de personalidade</h1>
                     </a>
                 </div>
