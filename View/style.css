@@ -156,7 +156,7 @@ a.button{
     box-sizing: border-box;
     padding:15px;
 }
-input[type='text']{
+input[type='text'], select, input[type='date'], textarea{
     font-size: 1.5em;
     font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
     background-color: transparent;
@@ -168,7 +168,46 @@ input[type='text']{
     background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5) inset;
 }
-
+::placeholder{
+    color: rgba(232, 232, 252, 0.75);
+}
+select option{
+    background-color:var(--terciary-color);
+    border:none
+}
+::-webkit-calendar-picker-indicator{
+    filter: invert();
+}
+div.select-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+div.select-container select{
+    width: 100%;
+    display: flex;
+}
+div.select-container p{
+    width: 0px ;
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 20px;
+    translate: -25px;
+    transform-origin: 5px 50%;
+    transition: rotate 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+div.select-container:has(select:focus) p{
+    rotate: 180deg;
+}
+textarea{
+    resize: none;
+    font-size: 1em !important;
+    height: 100%;
+    min-height: 200px;
+}
+input.smallinput{
+    font-size: 1em !important;
+}
 .display-none{
     display: none;
 }
@@ -276,7 +315,7 @@ input[type='text']{
 }
 .pfp{
     width: 200px;
-    max-width: 20vw;
+    max-width: 50vw;
     aspect-ratio: 1/1;
     overflow: hidden;
     display: flex;
@@ -292,11 +331,14 @@ input[type='text']{
     height: 100%;
     min-width: 100%;
 }
+div.footer-margin{
+    height: 50px;
+}
 footer{
     display: flex;
     background: var(--secondary-color);
     height: 50px;
-    margin-top:50px;
+    margin-top:auto;
     align-items: center;
     justify-content: center;
     font-size: 25px;
@@ -311,6 +353,10 @@ footer p{
     }
     .flex-wrap-at-760 #lottie-animation{
         align-self: center;
+    }
+    .flex-column-at-760{
+        flex-direction: column !important;
+        justify-content: center;
     }
 }
 @media (max-width:1000px){

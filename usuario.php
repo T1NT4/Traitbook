@@ -87,7 +87,7 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
     </header>
     <section>
         <div class="flex-row height-400 flex-wrap-at-760">
-            <div class="glass width-150po flex-row align-start ">
+            <div class="glass width-150po flex-row align-start flex-column-at-760">
                 <div class="pfp">
                     <?php if(isset($user)):?>
                         <img src="View/fotos_de_perfil/<?=$nome_arquivo_fotoperfil?>">
@@ -222,13 +222,14 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
         <div class="background-img"></div>
         <div class="background-img"></div>
     </div>
-    
+    <div class="footer-margin"></div>
     <footer>
         <p>Todos direitos reservados © Traitbook 2025</p>
     </footer>
 </body>
 </html>
 <script>
+    function ajustarAlturaBackground() {
     var body = document.body;
     var html = document.documentElement;
 
@@ -240,7 +241,15 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
         html.offsetHeight
     );
 
-    document.getElementById('background').style.height = height.toString()+"px"
+    document.getElementById('background').style.height = height.toString() + "px";
+}
+
+// Chamar a função no carregamento da página
+ajustarAlturaBackground();
+
+// Adicionar listeners para redimensionamento e rolagem
+window.addEventListener('resize', ajustarAlturaBackground);
+window.addEventListener('scroll', ajustarAlturaBackground);
 
 </script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js"></script>

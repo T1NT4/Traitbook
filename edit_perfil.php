@@ -14,17 +14,6 @@ if($user == null){
     header("Location: user-actions/logout.php");
 }
 
-
-$genero_pt = [
-    'Female' => 'Mulher',
-    'Male' => 'Homem',
-    'Other' => 'Outro'
-];
-$aniversario = new DateTime($user['aniversario']);
-$data_de_criacao = new DateTimeImmutable($user['data_de_registro']);
-$data_de_agora = new DateTimeImmutable('now');
-$horas_desde_conta_criada = ($data_de_agora->getTimestamp() - $data_de_criacao->getTimestamp()) / 3600;
-
 $cores = [
     'blue' => '#4297B3',
     'yellow' => '#E4AE3A',
@@ -39,6 +28,18 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
     $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
 }
 
+if($user['pontos_fracos'] != null OR $user['pontos_fracos'] != ''){
+    $pontos_fracos = json_decode($user['pontos_fracos'], true);
+}else{
+    $pontos_fracos = ['','','',''];
+}
+
+
+if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
+    $pontos_fortes = json_decode($user['pontos_fortes'], true);
+}else{
+    $pontos_fortes = ['','','',''];
+}
 
 ?>
 
@@ -77,59 +78,89 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
     </header>
     <form method="POST">
     <section>
-        <div class="flex-row height-400 flex-wrap-at-760">
-            <div class="glass width-150po flex-row align-start ">
+        <div class="flex-row height-400 flex-wrap-at-760 ">
+            <div class="glass width-100po flex-row align-start flex-column-at-760 width-150po">
                 <div class="pfp">
                     <?php if(isset($user)):?>
                         <img src="View/fotos_de_perfil/<?=$nome_arquivo_fotoperfil?>">
                     <?php endif;?>
                 </div>
                 <br>
-                <div class="flex-column nogap grow-100">
+                <div class="flex-column nogap grow-100" style="width: -webkit-fill-available">
                     <h3>Nome de usuário:</h3>
-                    <input type="text" value="<?=$user['username']?>">
+                    <input type="text" value="<?=$user['username']?>" name='username'>
                     <br>
                     <h3>Nome:</h3>
-                    <h1><?=$user['nome_inteiro']?></h1>
+                    <input type="text" value="<?=$user['nome_inteiro']?>" name='nome_inteiro'>
                     <br>
                     <h3>Email:</h3>
-                    <h1><?=$user['email']?></h1>
+                    <input type="text" value="<?=$user['email']?>" name='email'>
                     <br>
                     <h3>Genêro:</h3>
-                    <h1><?=$genero_pt[$user['genero']]?></h1>
+                    <!-- <h1><?=$genero_pt[$user['genero']]?></h1> -->
+                    <div class="select-container">
+                        <select name="genero">
+                            <option value="Male">Homem</option>
+                            <option value="Male">Mulher</option>
+                            <option value="Male">Outro</option>
+                        </select>
+                        <p>v</p>
+                    </div>
                     <br>
                     <h3>Data de nascimento:</h3>
-                    <h1><?=$aniversario->format('d/m/Y')?></h1>
+                    <input type="date" name="aniversario" value="<?=$user['aniversario']?>">
                     <br>
                     <div class="flex-row gap10 self-align-center">
                         <a class="button glass self-align-center" href="edit_perfil.php">
-                            <h1>Editar Perfil</h1>
-                        </a>
-                        <a class="button glass self-align-center" href="user-actions/logout.php">
-                            <h1>Sair da conta</h1>
+                            <h1>Concluir edição de perfil</h1>
                         </a>
                     </div>
                 </div>
             </div>
                 <div class="glass flex-column width-100po">
                     <h1>Sobre mim:</h1>
-                    <p>
-                        <?=$user['sobre_mim']?>
-                    </p>
+                    <textarea name="sobre_mim"><?=$user['sobre_mim']?></textarea>
                 </div>
                 </div>
        
             <div class="flex-row height-200 flex-wrap-at-760">
                 <div class="glass width-100po flex-column">
                     <h1>Pontos fortes:</h1>
-                    <h3>-Handsome</h3>
-                    <h3>-Handsome</h3>
-                    <h3>-Handsome</h3>
-                    <h3>-Handsome</h3>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 1" value="<?=$pontos_fortes[0]?>">
+                    </div>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 2" value="<?=$pontos_fortes[1]?>">
+                    </div>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 3" value="<?=$pontos_fortes[2]?>">
+                    </div>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 4" value="<?=$pontos_fortes[3]?>">
+                    </div>
                 </div>
                 <div class="glass width-100po flex-column">
                     <h1>Pontos fracos:</h1>
-                    <h3>-Só apareco por 1 minuto no jogo</h3>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 1" value="<?=$pontos_fracos[0]?>">
+                    </div>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 2" value="<?=$pontos_fracos[0]?>">
+                    </div>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 3" value="<?=$pontos_fracos[0]?>">
+                    </div>
+                    <div class="flex-row align-center">
+                        <h3>-</h3>
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 4" value="<?=$pontos_fracos[0]?>">
+                    </div>
                 </div>
             </div>
         <div class="flex-row height-500 flex-wrap-at-1000">
@@ -155,7 +186,7 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
         <div class="background-img"></div>
         <div class="background-img"></div>
     </div>
-    
+    <div class="footer-margin"></div>
     <footer>
         <p>Todos direitos reservados © Traitbook 2025</p>
     </footer>
