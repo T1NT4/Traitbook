@@ -13,6 +13,10 @@ body{
     flex-direction: column;
     font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
     color: var(--text-color);
+    overflow-x: hidden;
+}
+::selection{
+    background-color: var(--terciary-color);
 }
 *{
     margin: 0;
@@ -24,11 +28,54 @@ p:not(p.no-shadow),h1:not(h1.no-shadow),h2:not(h2.no-shadow),h3:not(h3.no-shadow
 header{
     background-color: #5D5FEF;
     padding: 10px;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 90px;
+}
+#hamburger{
+    font-size: 30px;
+    transform-origin: 50% 50%;
+    transition: rotate 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    user-select: none;
+    cursor: pointer;
+}
+header:has(#hamburger-checkbox:checked) #hamburger{
+    rotate: 90deg;
+}
+header nav{
+    position: absolute;
+    right:0;
+    top:90px;
+    z-index: 2;
+    font-size: 20px;
+    border-right-width: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    gap: 0 !important;
+    padding: 0 !important;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    translate: 110% 0;
+    transition: translate 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+header:has(#hamburger-checkbox:checked) nav{
+    translate:  0;
+}
+header nav .nav-element{
+    font-size: 25px;
+    padding: 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+header nav .nav-element:last-child{
+    border: none !important;
+}
+header nav .nav-element:hover, header nav .nav-element:focus{
+    background-color: rgba(255,255,255,0.2);
 }
 .logo img{
     color:var(--primary-color)
@@ -79,7 +126,7 @@ header{
     }
 }
 
-section{
+section, form.main-sect{
     margin:0 30px;
     display: flex;
     flex-direction: column;
@@ -109,7 +156,22 @@ a.button{
     box-sizing: border-box;
     padding:15px;
 }
+input[type='text']{
+    font-size: 1.5em;
+    font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
+    background-color: transparent;
+    color: var(--text-color);
+    appearance: none;
+    border:none;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5) inset;
+}
 
+.display-none{
+    display: none;
+}
 .flex-row{
     display: flex;
     gap:inherit;
@@ -118,6 +180,12 @@ a.button{
     display: flex;
     flex-direction: column;
     gap:inherit;
+}
+.gap10{
+    gap:10px;
+}
+.gap30{
+    gap:30px;
 }
 .nogap{
     gap: 0 !important;
@@ -131,11 +199,17 @@ a.button{
 .align-start{
     align-items: start;
 }
+.align-center{
+    align-items: center;
+}
 .self-align-center{
     align-self: center;
 }
 .justify-center{
     justify-content: center;
+}
+.textalign-center{
+    text-align: center;
 }
 .overflow-h{
     overflow: hidden;
@@ -218,7 +292,19 @@ a.button{
     height: 100%;
     min-width: 100%;
 }
-
+footer{
+    display: flex;
+    background: var(--secondary-color);
+    height: 50px;
+    margin-top:50px;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+}
+footer p{
+    filter: none !important;
+}
 @media (max-width:760px){
     .flex-wrap-at-760{
         flex-wrap: wrap;
@@ -232,3 +318,4 @@ a.button{
         flex-wrap: wrap;
     }
 }
+

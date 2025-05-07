@@ -14,14 +14,19 @@ if (!empty($_POST)) {
     $data_de_registro = $currentdatetime->format("Y-m-d H:i:s" . ".000000");
     $aniversario = $_POST['aniversario'];
 
-    $imagem_arquivo = $_FILES['foto-perfil'];
-    include __DIR__ . '/upload-image.php';
+    if($_FILES['foto-perfil']['name'] != ''){
+        $imagem_arquivo = $_FILES['foto-perfil'];
+        include __DIR__ . '/upload-image.php';
+    }
+    else{
+        $nome_arquivo_fotoperfil = null;
+    }
 
     $cadastrou = $Controller->cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
     $error_code = 0;
 
     if ($cadastrou && $error_code == null) {
-        header("Location: login.php");
+        header('Location: Login.php');
     }
 }
 ?>
