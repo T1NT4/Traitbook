@@ -76,7 +76,7 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
             </div>
         </nav>
     </header>
-    <form method="POST">
+    <form method="POST" action="process_edit_perfil.php">
     <section>
         <div class="flex-row height-400 flex-wrap-at-760 ">
             <div class="glass width-100po flex-row align-start flex-column-at-760 width-150po">
@@ -100,9 +100,9 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
                     <!-- <h1><?=$genero_pt[$user['genero']]?></h1> -->
                     <div class="select-container">
                         <select name="genero">
-                            <option value="Male">Homem</option>
-                            <option value="Male">Mulher</option>
-                            <option value="Male">Outro</option>
+                            <option value="Male" <?php if($user['genero'] == 'Male'): echo 'selected'; endif;?>>Homem</option>
+                            <option value="Female" <?php if($user['genero'] == 'Female'): echo 'selected'; endif;?>>Mulher</option>
+                            <option value="Other" <?php if($user['genero'] == 'Other'): echo 'selected'; endif;?>>Outro</option>
                         </select>
                         <p>v</p>
                     </div>
@@ -111,9 +111,9 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
                     <input type="date" name="aniversario" value="<?=$user['aniversario']?>">
                     <br>
                     <div class="flex-row gap10 self-align-center">
-                        <a class="button glass self-align-center" href="edit_perfil.php">
+                        <button type="submit" class="button glass self-align-center" href="edit_perfil.php">
                             <h1>Concluir edição de perfil</h1>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -128,38 +128,38 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
                     <h1>Pontos fortes:</h1>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 1" value="<?=$pontos_fortes[0]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 1" value="<?=$pontos_fortes[0]?>" name="pontos_fortes0">
                     </div>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 2" value="<?=$pontos_fortes[1]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 2" value="<?=$pontos_fortes[1]?>" name="pontos_fortes1">
                     </div>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 3" value="<?=$pontos_fortes[2]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 3" value="<?=$pontos_fortes[2]?>" name="pontos_fortes2">
                     </div>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 4" value="<?=$pontos_fortes[3]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto forte 4" value="<?=$pontos_fortes[3]?>" name="pontos_fortes3">
                     </div>
                 </div>
                 <div class="glass width-100po flex-column">
                     <h1>Pontos fracos:</h1>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 1" value="<?=$pontos_fracos[0]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 1" value="<?=$pontos_fracos[0]?>" name="pontos_fracos0">
                     </div>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 2" value="<?=$pontos_fracos[0]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 2" value="<?=$pontos_fracos[1]?>" name="pontos_fracos1">
                     </div>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 3" value="<?=$pontos_fracos[0]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 3" value="<?=$pontos_fracos[2]?>" name="pontos_fracos2">
                     </div>
                     <div class="flex-row align-center">
                         <h3>-</h3>
-                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 4" value="<?=$pontos_fracos[0]?>">
+                        <input type="text" class="grow-100 smallinput" placeholder="Ponto fraco 4" value="<?=$pontos_fracos[3]?>" name="pontos_fracos3">
                     </div>
                 </div>
             </div>
@@ -168,15 +168,15 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
                 
                 <div class="glass grow-100 flex-column">
                     <h1>Profissão atual:</h1>
-                    <p><?=$user['profissao_atual']?></p>
+                    <input type="text" class="grow-100 smallinput height-100po-2" value="<?=$user['profissao_atual']?>" name="profissao_atual">
                 </div>
                 <div class="glass grow-100 flex-column">
                     <h1>Minhas aspirações:</h1>
-                    <p><?=$user['minhas_aspiracoes']?></p>
+                    <input type="text" class="grow-100 smallinput height-100po-2" value="<?=$user['minhas_aspiracoes']?>" name="minhas_aspiracoes">
                 </div>
                 <div class="glass grow-100 flex-column">
                     <h1>Meus principais objetivos:</h1>
-                    <p><?=$user['meus_principais_objetivos']?></p>
+                    <input type="text" class="grow-100 smallinput height-100po-2" value="<?=$user['meus_principais_objetivos']?>" name="meus_principais_objetivos">
                 </div>
             </div>
         </div>
