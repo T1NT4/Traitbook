@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__."/config.php";
-require_once __DIR__."/Controller/LoginController.php";
+require_once __DIR__."/../config.php";
+require_once __DIR__."/../Controller/LoginController.php";
 
 $Controller = new LoginController($pdo);
 $user = $Controller->listarContaPorID($_COOKIE['id_user']);
@@ -44,8 +44,8 @@ curl_close($ch);
 
 $response = json_decode($responseraw,true);
 
-require_once __DIR__."/config.php";
-require_once __DIR__."/Controller/LoginController.php";
+require_once __DIR__."/../config.php";
+require_once __DIR__."/../Controller/LoginController.php";
 
 $Controller = new LoginController($pdo);
 

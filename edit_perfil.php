@@ -53,30 +53,8 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
     <link rel="shortcut icon" href="View/imgs/logo-icon.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <a class="logo" href="index.php">
-            <img src="View/imgs/Logo-Traitbook.svg">
-        </a>
-        <div class="flex-row align-center gap30">
-            <div class="pfp mini">
-                <img src="View/fotos_de_perfil/<?=$nome_arquivo_fotoperfil?>">
-            </div>
-            <input type="checkbox" class='display-none' id="hamburger-checkbox">
-            <label for="hamburger-checkbox" id="hamburger">☰</label>
-        </div>
-        <nav class="glass">
-            <div class="nav-element">
-                <a href="">Página inicial</a>
-            </div>
-            <div class="nav-element">
-                <a href="">Página inicial</a>
-            </div>
-            <div class="nav-element">
-                <a href="">Página inicial</a>
-            </div>
-        </nav>
-    </header>
-    <form method="POST" action="process_edit_perfil.php">
+    <?php require __DIR__.'/View/header.php'?>
+    <form method="POST" action="user-actions/process_edit_perfil.php">
     <section>
         <div class="flex-row height-400 flex-wrap-at-760 ">
             <div class="glass width-100po flex-row align-start flex-column-at-760 width-150po">
@@ -186,10 +164,7 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
         <div class="background-img"></div>
         <div class="background-img"></div>
     </div>
-    <div class="footer-margin"></div>
-    <footer>
-        <p>Todos direitos reservados © Traitbook 2025</p>
-    </footer>
+    <?php require __DIR__.'/View/footer.php'?>
 </body>
 </html>
 <script>
@@ -206,9 +181,10 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
 
     document.getElementById('background').style.height = height.toString()+"px"
 
-</script>    
+</script>
+<script src="View/js/ajustarAlturaBackground.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js"></script>
-<script src="handleLottieAnim.js"></script>
+<script src="View/js/handleLottieAnim.js"></script>
 <script>
     initAnim('<?=$jsonAnim?>');
 </script>

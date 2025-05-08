@@ -21,6 +21,9 @@ class LoginController{
     public function updateUser($id_user,$password){
         return $this->LoginModel->updateUser($id_user,$password);
     }
+    public function updateUserWithEmail($email,$password){
+        return $this->LoginModel->updateUserWithEmail($email,$password);
+    }
     public function logIn($username, $password){
         return $this->LoginModel->logIn($username,$password);
     }
@@ -29,6 +32,9 @@ class LoginController{
     }
     public function updateLinkPersonalidade($id_user,$link_personalidade){
         return $this->LoginModel->updateLinkPersonalidade($id_user,$link_personalidade);
+    }
+    public function updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos){
+        return $this->LoginModel->updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos);
     }
     // public function atualizarPlanoDoUsuario($username,$plano){
     //     return $this->LoginModel->atualizarPlano($username,$plano);

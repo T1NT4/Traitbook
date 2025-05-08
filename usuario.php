@@ -42,7 +42,21 @@ $cores = [
     'purple' => '#88619A',
     'red' => '#F25E62'
 ];
-$tem_pontos_fracos_ou_fortes = ($user['pontos_fortes'] != null) OR ($user['pontos_fortes'] != '') OR ($user['pontos_fracos'] != null) OR ($user['pontos_fracos'] != '');
+$tem_pontos_fortes = (($user['pontos_fortes'] == null) OR ($user['pontos_fortes'] == '') OR ($user['pontos_fortes'] == '["","","",""]'));
+$tem_pontos_fracos = (($user['pontos_fracos'] == null) OR ($user['pontos_fracos'] == '') OR ($user['pontos_fracos'] == '["","","",""]'));
+$tem_pontos_fracos_ou_fortes = $tem_pontos_fracos OR $tem_pontos_fortes;
+
+$pontos_fortes = ['','','',''];
+
+if(!$tem_pontos_fortes){
+    $pontos_fortes = json_decode($user['pontos_fortes'], true);
+}
+
+$pontos_fracos = ['','','',''];
+
+if(!$tem_pontos_fracos){
+    $pontos_fracos = json_decode($user['pontos_fracos'], true);
+}
 
 $nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
 if(!isset($user['nome_arquivo_fotoperfil'])){
@@ -62,29 +76,7 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
     <link rel="shortcut icon" href="View/imgs/logo-icon.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <a class="logo" href="index.php">
-            <img src="View/imgs/Logo-Traitbook.svg">
-        </a>
-        <div class="flex-row align-center gap30">
-            <div class="pfp mini">
-                <img src="View/fotos_de_perfil/<?=$nome_arquivo_fotoperfil?>">
-            </div>
-            <input type="checkbox" class='display-none' id="hamburger-checkbox">
-            <label for="hamburger-checkbox" id="hamburger">☰</label>
-        </div>
-        <nav class="glass">
-            <div class="nav-element">
-                <a href="">Página inicial</a>
-            </div>
-            <div class="nav-element">
-                <a href="">Página inicial</a>
-            </div>
-            <div class="nav-element">
-                <a href="">Página inicial</a>
-            </div>
-        </nav>
-    </header>
+    <?php require __DIR__.'/View/header.php'?>
     <section>
         <div class="flex-row height-400 flex-wrap-at-760">
             <div class="glass width-150po flex-row align-start flex-column-at-760">
@@ -135,19 +127,28 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
                 <?php endif;?>
             <?php endif;?>
                 </div>
-        <?php if($tem_pontos_fracos_ou_fortes):?>
+        <?php if(!$tem_pontos_fracos_ou_fortes):?>
             <div class="flex-row height-200 flex-wrap-at-760">
-                <div class="glass width-100po flex-column">
-                    <h1>Pontos fortes:</h1>
-                    <h3>-Handsome</h3>
-                    <h3>-Handsome</h3>
-                    <h3>-Handsome</h3>
-                    <h3>-Handsome</h3>
-                </div>
-                <div class="glass width-100po flex-column">
+                <?php if(!$tem_pontos_fortes):?>
+                    <div class="glass width-100po flex-column">
+                        <h1>Pontos fortes:</h1>
+                        <?php foreach($pontos_fortes as $ponto_forte):?>
+                            <?php if($ponto_forte != ''):?>
+                                <h3>-<?=$ponto_forte?></h3>
+                            <?php endif;?>
+                        <?php endforeach;?>
+                    </div>
+                <?php endif;?>
+                <?php if(!$tem_pontos_fracos):?>
+                    <div class="glass width-100po flex-column">
                     <h1>Pontos fracos:</h1>
-                    <h3>-Só apareco por 1 minuto no jogo</h3>
+                        <?php foreach($pontos_fracos as $ponto_fraco): ?>
+                            <?php if($ponto_fraco != ''):?>
+                                <h3>-<?=$ponto_fraco?></h3>
+                            <?php endif;?>
+                        <?php endforeach;?>
                 </div>
+                <?php endif;?>
             </div>
         <?php endif;?>
         <div class="flex-row height-500 flex-wrap-at-1000">
@@ -222,38 +223,12 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
         <div class="background-img"></div>
         <div class="background-img"></div>
     </div>
-    <div class="footer-margin"></div>
-    <footer>
-        <p>Todos direitos reservados © Traitbook 2025</p>
-    </footer>
+    <?php require __DIR__.'/View/footer.php'?>
 </body>
 </html>
-<script>
-    function ajustarAlturaBackground() {
-    var body = document.body;
-    var html = document.documentElement;
-
-    var height = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-    );
-
-    document.getElementById('background').style.height = height.toString() + "px";
-}
-
-// Chamar a função no carregamento da página
-ajustarAlturaBackground();
-
-// Adicionar listeners para redimensionamento e rolagem
-window.addEventListener('resize', ajustarAlturaBackground);
-window.addEventListener('scroll', ajustarAlturaBackground);
-
-</script>    
+<script src="View/js/ajustarAlturaBackground.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js"></script>
-<script src="handleLottieAnim.js"></script>
+<script src="View/js/handleLottieAnim.js"></script>
 <script>
     initAnim('<?=$jsonAnim?>');
 </script>

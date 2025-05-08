@@ -59,6 +59,14 @@ class LoginModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$hashedPassword, $id_user]);
     }
+    public function updateUserWithEmail($email, $password) {
+        // Hash the new password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "UPDATE contas SET password = ? WHERE email = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$hashedPassword, $email]);
+    }
 
     public function logIn($username, $password) {
         $sql = "SELECT * FROM contas WHERE username = ?";
@@ -89,6 +97,35 @@ class LoginModel{
         $sql = "UPDATE contas SET link_personalidade = ? WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$link_personalidade,$id_user]);
+    }
+    public function updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos){
+        $sql = "UPDATE contas SET
+        username = ?,
+        nome_inteiro = ?,
+        email = ?,
+        aniversario = ?,
+        genero = ?,
+        sobre_mim = ?,
+        pontos_fracos = ?,
+        pontos_fortes = ?,
+        profissao_atual = ?,
+        minhas_aspiracoes = ?,
+        meus_principais_objetivos = ? 
+        WHERE id_user = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $username,
+            $nome_inteiro,
+            $email,
+            $aniversario,
+            $genero,
+            $sobre_mim,
+            $pontos_fracos,
+            $pontos_fortes,
+            $profissao_atual,
+            $minhas_aspiracoes,
+            $meus_principais_objetivos,
+            $id_user]);
     }
     // public function atualizarPlano($username,$plano){
     //     $sql = "UPDATE Contas SET plano = ? WHERE username = ?";

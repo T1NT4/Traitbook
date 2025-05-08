@@ -25,7 +25,7 @@ if(!isset($_COOKIE['id_user'])){
         $questions = json_decode($raw_questions, true);
     ?>
 
-    <form action="process_answer.php" method="POST">
+    <form action="user-actions/process_answer.php" method="POST">
         <?php 
         $count = 1;
         foreach ($questions as $question):?>
