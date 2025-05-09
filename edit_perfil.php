@@ -54,7 +54,7 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
 </head>
 <body>
     <?php require __DIR__.'/View/header.php'?>
-    <form method="POST" action="user-actions/process_edit_perfil.php">
+    <form method="POST" action="user-actions/process_edit_perfil.php" enctype="multipart/form-data">
     <section>
         <div class="flex-row height-400 flex-wrap-at-760 ">
             <div class="glass width-100po flex-row align-start flex-column-at-760 width-150po">
@@ -62,6 +62,10 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
                     <?php if(isset($user)):?>
                         <img src="View/fotos_de_perfil/<?=$nome_arquivo_fotoperfil?>">
                     <?php endif;?>
+                    <label for="foto_perfil">
+                        <img src="View/imgs/mudarFotoPerfil.png" alt="">
+                    </label>
+                    <input type="file" name="foto_perfil" id="foto_perfil">
                 </div>
                 <br>
                 <div class="flex-column nogap grow-100" style="width: -webkit-fill-available">

@@ -43,7 +43,25 @@ $contaEmail = $Controller->listarContaPorEmail($email);
 
 $emailValid = $contaEmail['id_user'] == $_COOKIE['id_user'];
 
+
 if($usernameValid AND $emailValid){
+
+        
+    $imagem_arquivo = $_FILES['foto_perfil'];
+    if($imagem_arquivo['name'] != ''){
+        $diretorio_override = "../View/fotos_de_perfil/";
+        include __DIR__.'/../upload-image.php';
+            
+        $error_code = 0;
+
+        if($error_code == null){
+            $Controller->updateFotoPerfil($_COOKIE['id_user'],$nome_arquivo_fotoperfil);
+            var_dump($nome_arquivo_fotoperfil);
+        }
+
+        $Controller->updateFotoPerfil($_COOKIE['id_user'], $nome_arquivo_fotoperfil);
+    }
+
     $Controller->updateEverything(
         $_COOKIE['id_user'],
         $username,
@@ -57,7 +75,6 @@ if($usernameValid AND $emailValid){
         $profissao_atual,
         $minhas_aspiracoes,
         $meus_principais_objetivos);
-
 
         
     header('Location: ../usuario.php');

@@ -62,17 +62,18 @@ header nav{
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transform: translateX(110%);
-    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 0px;
+    transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 header:has(#hamburger-checkbox:checked) nav{
-    transform: translateX(0%);
+    width: 200px;
     display: flex;
 }
 header nav .nav-element{
     font-size: 25px;
     padding: 30px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    text-wrap-mode:nowrap;
 }
 header nav .nav-element:last-child{
     border: none !important;
@@ -244,6 +245,9 @@ input[type='file']{
 }
 ::file-selector-button:hover{
     background-color: rgba(255,255,255,0.2);
+}
+.pfp input[type='file']{
+    display: none;
 }
 ::placeholder{
     color: rgba(232, 232, 252, 0.75);
@@ -425,6 +429,16 @@ input.smallinput{
     width: auto;
     height: 100%;
     min-width: 100%;
+}
+.pfp label{
+    margin-right: -100%;
+    transform: translateX(-100%);
+    background-color: lightgray;
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+}
+.pfp:hover label{
+    opacity: 0.5;
 }
 div.footer-margin{
     height: 50px;
