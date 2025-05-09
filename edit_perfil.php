@@ -65,10 +65,13 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
                     <label for="foto_perfil">
                         <img src="View/imgs/mudarFotoPerfil.png" alt="">
                     </label>
-                    <input type="file" name="foto_perfil" id="foto_perfil">
+                    <input type="file" name="foto_perfil" id="foto_perfil" onchange="this.form.submit()">
                 </div>
                 <br>
                 <div class="flex-column nogap grow-100" style="width: -webkit-fill-available">
+                    <?php if(isset($_COOKIE['edit_perfil_error_code'])):?>
+                        <h1><?=$_COOKIE['edit_perfil_error_code']?></h1>
+                    <?php endif;?>
                     <h3>Nome de usuário:</h3>
                     <input type="text" value="<?=$user['username']?>" name='username'>
                     <br>
