@@ -51,22 +51,28 @@ if (!empty($_POST)) {
         <form method="POST" enctype="multipart/form-data">
             <section>
                 <div class="flex-row flex-wrap-at-760 justify-center">
-                    <div class="glass flex-column align-center flex-column-at-760 width-fitcontent">
+                    <div class="glass flex-column  flex-column-at-760 align-center">
+                        <?php if(isset($cadastrou) && !$cadastrou):?>
+                            <h3 class="textalign-center">esse usuário ja existe! tente outro nome de usuário.</h3>
+                        <?php endif;?>
+                        <?php if(isset($error_code) && $error_code != null):?>
+                            <h3 class="textalign-center"><?=$error_code?></h3>
+                        <?php endif;?>
                         <div>
                             <h3>Nome de usuário:</h3>
-                            <input required class='width-100po minwidth-300' type="text" name="username" placeholder="nome de usuário">
+                            <input required class=' minwidth-300' type="text" name="username" placeholder="nome de usuário">
                         </div>
                         <div>
                             <h3>Nome inteiro:</h3>
-                            <input required class='width-100po minwidth-300' type="text" name="fullname" placeholder="nome inteiro">
+                            <input required class=' minwidth-300' type="text" name="fullname" placeholder="nome inteiro">
                         </div>
                         <div>
                             <h3>Email:</h3>
-                            <input required class='width-100po minwidth-300' type="email" name="email" placeholder="seu e-mail">
+                            <input required class=' minwidth-300' type="email" name="email" placeholder="seu e-mail">
                         </div>
                         <div>
                             <h3>Senha:</h3>
-                            <input required class='width-100po minwidth-300' type="password" name="password" placeholder="senha">
+                            <input required class=' minwidth-300' type="password" name="password" placeholder="senha">
                         </div>
                         <div>
                             <h3>Selecione o seu genêro:</h3>
@@ -87,7 +93,7 @@ if (!empty($_POST)) {
                         </div>
                         <div>
                             <label for="aniversario"><h3>Data de nascimento (opcional):</h3></label>
-                            <input class='width-100po minwidth-300' type="date" name="aniversario" id="aniversario">
+                            <input class=' minwidth-300' type="date" name="aniversario" id="aniversario">
                         </div>
                         <div>
                             <label for="foto-perfil"><h3>Foto de perfil (opcional): </h3></label>
@@ -99,13 +105,8 @@ if (!empty($_POST)) {
                         <button type="submit" class="button glass self-align-center"><h1>Cadastrar Conta</h1></button>
 
 
-                        <p>Já tem uma conta?<a href="login.php">Faça login</a></p>
-                        <?php if(isset($cadastrou) && !$cadastrou):?>
-                            <p>esse usuário ja existe! tente outro nome de usuário.</p>
-                        <?php endif;?>
-                        <?php if(isset($error_code) && $error_code != null):?>
-                            <p><?=$error_code?></p>
-                        <?php endif;?>
+                        <p class="textalign-center">Já tem uma conta?<a href="login.php">Faça login</a></p>
+                        
                     </div>
                 </div>
             </section>
