@@ -11,7 +11,12 @@ class LoginModel{
         $stmt->execute([$username]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if (empty($results)) {
+        $sql = "SELECT * FROM contas WHERE email = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email]);
+        $results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($results) AND empty($results2)) {
             // Hash the password before saving it
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -35,13 +40,23 @@ class LoginModel{
         $sql = "SELECT * FROM contas WHERE email = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$email]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        if (empty($result)){
+            return [];
+        }else{
+            return $result[0];
+        }
     }
     public function listarContaPorID($id_user) {
         $sql = "SELECT * FROM contas WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id_user]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        if (empty($result)){
+            return [];
+        }else{
+            return $result[0];
+        }
     }
 
     public function confirmarSenha($username, $password) {
