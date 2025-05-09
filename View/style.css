@@ -66,7 +66,7 @@ header nav{
     transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 header:has(#hamburger-checkbox:checked) nav{
-    width: 200px;
+    width: 250px;
     display: flex;
 }
 header nav .nav-element{
@@ -74,6 +74,7 @@ header nav .nav-element{
     padding: 30px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.4);
     text-wrap-mode:nowrap;
+    text-align: center;
 }
 header nav .nav-element:last-child{
     border: none !important;
@@ -165,6 +166,11 @@ a.button{
     box-shadow: 5px 5px 10px rgba(123, 123, 123, 0.3);
     box-sizing: border-box;
     padding:15px;
+}
+.inset-shadow{
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5) inset;
 }
 input[type='text'], select, input[type='date'], textarea, input[type='password'], input[type='email']{
     font-size: 1.5em;

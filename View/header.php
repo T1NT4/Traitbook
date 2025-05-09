@@ -12,14 +12,16 @@
         <label for="hamburger-checkbox" id="hamburger">☰</label>
     </div>
     <nav class="glass">
-        <div class="nav-element">
-            <a href="">Página inicial</a>
-        </div>
-        <div class="nav-element">
-            <a href="">Página inicial</a>
-        </div>
-        <div class="nav-element">
-            <a href="">Página inicial</a>
-        </div>
+        <a class="nav-element" href="index.php">
+            <p>Página inicial</p>
+        </a>
+        <a class="nav-element" href="search-people.php">
+            <p>Buscar pessoas</p>
+        </a>
+        <?php if($_COOKIE['id_user']):?>
+            <a href="usuario.php" class="nav-element">
+                <p>Página do usuário</p>
+            </a>
+        <?php endif;?>
     </nav>
 </header>
