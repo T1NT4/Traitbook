@@ -19,8 +19,22 @@ if ($user['link_personalidade'] == ""){
     $personalidade = null;
 }else{
     $personalidade = json_decode($user['personalidade_data'], true);
-    $jsonAnim = file_get_contents($personalidade['avatar']['staticBodyJson']);
-    $svgData = file_get_contents($personalidade['avatar']['staticBodyPath']);
+
+    $jsonAnimLink = $personalidade['avatar']['staticBodyJson'];
+    
+    $jsonAnimLink = str_replace('male',strtolower($user['genero']), $jsonAnimLink);
+    $jsonAnimLink = str_replace('female',strtolower($user['genero']), $jsonAnimLink);
+    $jsonAnimLink = str_replace('other',strtolower($user['genero']), $jsonAnimLink);
+
+    $jsonAnim = file_get_contents($jsonAnimLink);
+
+    $svgDataLink = $personalidade['avatar']['staticBodyPath'];
+
+    $svgDataLink = str_replace('male',strtolower($user['genero']), $svgDataLink);
+    $svgDataLink = str_replace('female',strtolower($user['genero']), $svgDataLink);
+    $svgDataLink = str_replace('other',strtolower($user['genero']), $svgDataLink);
+
+    $svgData = file_get_contents($svgDataLink);
 
 }
 
