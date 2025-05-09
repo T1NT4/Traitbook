@@ -9,6 +9,9 @@ class LoginController{
     function cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero){
         return $this->LoginModel->cadastrarConta($username, $fullname, $email, $password, $data_de_registro, $nome_arquivo_fotoperfil, $aniversario, $genero);
     }
+    public function listarContaTodas() {
+        return $this->LoginModel->listarContaTodas();
+    }
     public function listarContaPorUsername($username) {
         return $this->LoginModel->listarContaPorUsername($username);
     }

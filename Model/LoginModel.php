@@ -29,6 +29,12 @@ class LoginModel{
             return false;
         }
     }
+    public function listarContaTodas() {
+        $sql = "SELECT * FROM `contas` WHERE 1 ORDER BY data_de_registro";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function listarContaPorUsername($username) {
         $sql = "SELECT * FROM contas WHERE username = ?";

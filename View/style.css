@@ -346,6 +346,9 @@ input.smallinput{
 .maxwidth100{
     max-width: 100%;
 }
+.maxwidth90{
+    max-width: 90%;
+}
 .maxwidth450px{
     max-width: 450px;
 }
@@ -382,6 +385,12 @@ input.smallinput{
 .height-500{
     min-height: 500px;
 }
+.maxheight-600{
+    max-height: 600px;
+}
+.scroll-y{
+    overflow-y: auto;
+}
 .width-fitcontent{
     width: fit-content;
 }
@@ -402,6 +411,9 @@ input.smallinput{
 }
 .minwidth-300{
     min-width: 300px
+}
+.width-500{
+    width: 500px
 }
 .grow-100{
     flex-grow: 1;
