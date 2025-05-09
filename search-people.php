@@ -31,13 +31,13 @@ $allusers = $Controller->listarContaTodas();
 
         <section class=" flex-row justify-center glass maxheight-600">
             <?php foreach($allusers as $user): ?>
-                <div class="glass flex-row">
+                <a class="glass flex-row" href="usuario.php?=user_id=<?=$user['id_user']?>">
                     <?php
                         if(!isset($user['nome_arquivo_fotoperfil'])){
                             $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
                         }
                     ?>
-                </div>
+                </a>
             <?php endforeach;?>
         </section>
     </section>

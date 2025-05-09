@@ -18,7 +18,7 @@
         <a class="nav-element" href="search-people.php">
             <p>Buscar pessoas</p>
         </a>
-        <?php if($_COOKIE['id_user']):?>
+        <?php if(isset($_COOKIE['id_user'])):?>
             <a href="usuario.php" class="nav-element">
                 <p>Página do usuário</p>
             </a>
