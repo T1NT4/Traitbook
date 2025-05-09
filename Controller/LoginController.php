@@ -12,6 +12,9 @@ class LoginController{
     public function listarContaPorUsername($username) {
         return $this->LoginModel->listarContaPorUsername($username);
     }
+    public function listarContaPorEmail($email) {
+        return $this->LoginModel->listarContaPorEmail($email);
+    }
     public function listarContaPorID($id_user) {
         return $this->LoginModel->listarContaPorID($id_user);
     }

@@ -31,7 +31,12 @@ class LoginModel{
         $stmt->execute([$username]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
     }
-
+    public function listarContaPorEmail($email) {
+        $sql = "SELECT * FROM contas WHERE email = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
     public function listarContaPorID($id_user) {
         $sql = "SELECT * FROM contas WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);

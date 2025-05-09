@@ -14,6 +14,15 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
     $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
 }
 
+function isPortInUse($host = 'localhost', $port = 14140) {
+    $connection = @fsockopen($host, $port);
+    if (is_resource($connection)) {
+        fclose($connection);
+        return true;
+    }
+    return false;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,16 +37,26 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
     <?php require __DIR__.'/View/header.php';?>
 
     <?php
-        $raw_questions = file_get_contents("http://localhost:14140/api/personality/questions");
-        if($raw_questions == false){
-            $api_dir = __DIR__;
-            $api_dir = str_replace('traitbook','16personalities-api',$api_dir);
-            var_dump($api_dir);
-
-            system('cd '.$api_dir.' && npm run dev');
-            header('Location: teste-de-personalidade.php');
+        $api_url = "http://localhost:14140/api/personality/questions";
+        $flag_file = __DIR__ . '/api_server_running.flag';
+        
+        // Tenta acessar a API
+        $raw_questions = @file_get_contents($api_url);
+        
+        // Se não conseguiu acessar a API
+        if ($raw_questions === false) {
+            // Se o servidor ainda não está iniciando, inicia o .bat
+            if (!isPortInUse()) {
+                pclose(popen('start "Server" '.__DIR__.'\start_api_server.bat', 'r'));
+            }
+        
+            // Recarrega a página até o servidor estar disponível
+            echo "<meta http-equiv='refresh' content='2'>";
+            echo "<h1 class='textalign-center'>Aguardando servidor iniciar...</h1>";
+            exit;
         }
-
+        
+        // API respondeu com sucesso
         $questions = json_decode($raw_questions, true);
     ?>
 

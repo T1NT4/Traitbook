@@ -33,19 +33,39 @@ $meus_principais_objetivos = $_POST['meus_principais_objetivos'];
 
 $Controller = new LoginController($pdo);
 
-$Controller->updateEverything(
-    $_COOKIE['id_user'],
-    $username,
-    $nome_inteiro,
-    $email,
-    $aniversario,
-    $genero,
-    $sobre_mim,
-    $pontos_fracos,
-    $pontos_fortes,
-    $profissao_atual,
-    $minhas_aspiracoes,
-    $meus_principais_objetivos);
+$contaUsername = $Controller->listarContaPorUsername($username);
 
-header('Location: ../usuario.php');
+$usernameValid = $contaUsername['id_user'] == $_COOKIE['id_user'];
+
+var_dump($usernameValid);
+
+$contaEmail = $Controller->listarContaPorEmail($email);
+
+$emailValid = $contaEmail['id_user'] == $_COOKIE['id_user'];
+
+if($usernameValid AND $emailValid){
+    $Controller->updateEverything(
+        $_COOKIE['id_user'],
+        $username,
+        $nome_inteiro,
+        $email,
+        $aniversario,
+        $genero,
+        $sobre_mim,
+        $pontos_fracos,
+        $pontos_fortes,
+        $profissao_atual,
+        $minhas_aspiracoes,
+        $meus_principais_objetivos);
+
+
+        
+    header('Location: ../usuario.php');
+}else{
+    $edit_perfil_error_code = 'Este Email ou Nome de Usuário já estão sendo usuados';
+
+    setcookie("edit_perfil_error_code",$edit_perfil_error_code, time()+10, "/");
+    header('Location: ../edit-perfil.php');
+}
+
 ?>

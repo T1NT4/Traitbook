@@ -15,7 +15,7 @@ if($user == null){
     header("Location: user-actions/logout.php");
 }
 
-if ($user['link_personalidade'] == ""){
+if ($user['link_personalidade'] == "" OR $user['personalidade_data'] == ""){
     $personalidade = null;
 }else{
     $personalidade = json_decode($user['personalidade_data'], true);
