@@ -29,6 +29,11 @@ if (!empty($_POST)) {
         header('Location: Login.php');
     }
 }
+
+if(isset($_COOKIE['id_user'])){
+    $user = $Controller->listarContaPorID($_COOKIE['id_user']);
+    $nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +58,7 @@ if (!empty($_POST)) {
                 <div class="flex-row flex-wrap-at-760 justify-center">
                     <div class="glass flex-column  flex-column-at-760 align-center">
                         <?php if(isset($cadastrou) && !$cadastrou):?>
-                            <h3 class="textalign-center">esse usuário ja existe! tente outro nome de usuário.</h3>
+                            <h3 class="textalign-center">Este Nome de Usuário ou Email ja está sendo usado, tente novamente!.</h3>
                         <?php endif;?>
                         <?php if(isset($error_code) && $error_code != null):?>
                             <h3 class="textalign-center"><?=$error_code?></h3>

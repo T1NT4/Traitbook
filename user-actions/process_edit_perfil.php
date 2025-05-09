@@ -79,10 +79,10 @@ if($usernameValid AND $emailValid){
         
     header('Location: ../usuario.php');
 }else{
-    $edit_perfil_error_code = 'Este Email ou Nome de Usuário já estão sendo usuados';
+    $edit_perfil_error_code = 'Este Email ou Nome de Usuário já está sendo usado, tente novamente.';
 
     setcookie("edit_perfil_error_code",$edit_perfil_error_code, time()+10, "/");
-    header('Location: ../edit-perfil.php');
+    header('Location: ../edit_perfil.php');
 }
 
 ?>
