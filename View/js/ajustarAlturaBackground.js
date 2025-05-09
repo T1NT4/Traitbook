@@ -19,3 +19,4 @@ ajustarAlturaBackground();
 // Adicionar listeners para redimensionamento e rolagem
 window.addEventListener('resize', ajustarAlturaBackground);
 window.addEventListener('scroll', ajustarAlturaBackground);
+window.addEventListener('zoom', ajustarAlturaBackground);

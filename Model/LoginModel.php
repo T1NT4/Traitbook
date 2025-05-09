@@ -93,10 +93,10 @@ class LoginModel{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$nome_arquivo_fotoperfil,$id_user]);
     }
-    public function updateLinkPersonalidade($id_user,$link_personalidade){
-        $sql = "UPDATE contas SET link_personalidade = ? WHERE id_user = ?";
+    public function updateLinkPersonalidade($id_user,$link_personalidade, $personalidade_data){
+        $sql = "UPDATE contas SET link_personalidade = ?, personalidade_data = ? WHERE id_user = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$link_personalidade,$id_user]);
+        $stmt->execute([$link_personalidade, $personalidade_data,$id_user]);
     }
     public function updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos){
         $sql = "UPDATE contas SET

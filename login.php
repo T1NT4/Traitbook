@@ -28,7 +28,7 @@ if(!empty($_POST)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <link rel="shortcut icon" href="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" type="image/png">
-    <title>Página de LogIn</title>
+    <title>Traitbook - Página de LogIn</title>
 </head>
 <body>
 

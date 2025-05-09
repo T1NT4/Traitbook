@@ -48,7 +48,7 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuário</title>
+    <title>Traitbook - Usuário</title>
     <link rel="stylesheet" href="View/style.css">
     <link rel="shortcut icon" href="View/imgs/logo-icon.png" type="image/x-icon">
 </head>
@@ -167,24 +167,4 @@ if($user['pontos_fortes'] != null OR $user['pontos_fortes'] != ''){
     <?php require __DIR__.'/View/footer.php'?>
 </body>
 </html>
-<script>
-    var body = document.body;
-    var html = document.documentElement;
-
-    var height = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-    );
-
-    document.getElementById('background').style.height = height.toString()+"px"
-
-</script>
 <script src="View/js/ajustarAlturaBackground.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.5/lottie.min.js"></script>
-<script src="View/js/handleLottieAnim.js"></script>
-<script>
-    initAnim('<?=$jsonAnim?>');
-</script>

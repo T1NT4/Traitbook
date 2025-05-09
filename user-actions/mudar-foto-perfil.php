@@ -43,6 +43,7 @@ if(!empty($_POST)){
     <title>Mudar foto de perfil</title>
 </head>
 <body>
+    
     <section class="marginend marginstart">
         <h4>Atualizar a foto de perfil</h4>
         <br>
@@ -64,5 +65,4 @@ if(!empty($_POST)){
         }
     ?>
     </section>
-    
 </html>

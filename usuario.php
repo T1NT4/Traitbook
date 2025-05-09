@@ -16,9 +16,9 @@ if($user == null){
 }
 
 if ($user['link_personalidade'] == ""){
-    $personalidade = null;    
+    $personalidade = null;
 }else{
-    $personalidade = $ApiController->getDataFrom16PersonalitiesLink($user['link_personalidade']);
+    $personalidade = json_decode($user['personalidade_data'], true);
     $jsonAnim = file_get_contents($personalidade['avatar']['staticBodyJson']);
     $svgData = file_get_contents($personalidade['avatar']['staticBodyPath']);
 
@@ -71,7 +71,7 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuário</title>
+    <title>Traitbook - Usuário <?=$user['nome_inteiro']?></title>
     <link rel="stylesheet" href="View/style.css">
     <link rel="shortcut icon" href="View/imgs/logo-icon.png" type="image/x-icon">
 </head>

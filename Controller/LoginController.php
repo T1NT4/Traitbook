@@ -30,8 +30,8 @@ class LoginController{
     public function updateFotoPerfil($id_user,$nome_arquivo_fotoperfil){
         return $this->LoginModel->updateFotoPerfil($id_user,$nome_arquivo_fotoperfil);
     }
-    public function updateLinkPersonalidade($id_user,$link_personalidade){
-        return $this->LoginModel->updateLinkPersonalidade($id_user,$link_personalidade);
+    public function updateLinkPersonalidade($id_user,$link_personalidade, $personalidade_data){
+        return $this->LoginModel->updateLinkPersonalidade($id_user,$link_personalidade, $personalidade_data);
     }
     public function updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos){
         return $this->LoginModel->updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos);

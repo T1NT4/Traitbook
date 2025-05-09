@@ -46,12 +46,17 @@ $response = json_decode($responseraw,true);
 
 require_once __DIR__."/../config.php";
 require_once __DIR__."/../Controller/LoginController.php";
+require_once __DIR__."/../Controller/ApiController.php";
 
-$Controller = new LoginController($pdo);
+$LoginController = new LoginController($pdo);
+$ApiController= new ApiController();
 
-$Controller->updateLinkPersonalidade($_COOKIE['id_user'],$response['ogLink']);
+$personalidade = $ApiController->getDataFrom16PersonalitiesLink($response['ogLink']);
+$personalidade_data = json_encode($personalidade);
 
-header("Location: usuario.php");
+$LoginController->updateLinkPersonalidade($_COOKIE['id_user'],$response['ogLink'], $personalidade_data);
+
+header("Location: ../usuario.php");
 ?>
 
 <!-- 

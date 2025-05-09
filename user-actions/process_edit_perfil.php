@@ -1,7 +1,7 @@
 <?php
-include_once __DIR__."/Controller/LoginController.php";
-include_once __DIR__."/Controller/ApiController.php";
-include_once __DIR__."/config.php";
+include_once __DIR__."/../Controller/LoginController.php";
+include_once __DIR__."/../Controller/ApiController.php";
+include_once __DIR__."/../config.php";
 
 $username = $_POST['username'];
 $nome_inteiro = $_POST['nome_inteiro'];
@@ -47,5 +47,5 @@ $Controller->updateEverything(
     $minhas_aspiracoes,
     $meus_principais_objetivos);
 
-header('Location: usuario.php');
+header('Location: ../usuario.php');
 ?>
