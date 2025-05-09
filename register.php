@@ -37,65 +37,87 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" type="image/png">
     <title>Traitbook - Cadastrar conta</title>
     <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="View/style.css">
+    <link rel="shortcut icon" href="View/imgs/logo-icon.png" type="image/x-icon">
 </head>
 
 <body>
+
+    <?php include __DIR__."/View/header.php";?>
+
     
-            <form method="POST" enctype="multipart/form-data">
-                <input required type="text" name="username" placeholder="nome de usuário">
-                <br>
-                <input required type="text" name="fullname" placeholder="nome inteiro">
-                <br>
-                <input required type="email" name="email" placeholder="seu e-mail">
-                <br>
-                <input required type="password" name="password" placeholder="senha">
-                <br>
-                <div style="display:flex; gap:2rem">
-                    <p>Selecione seu genêro:</p>
-                    <div style="display:flex">
-                        <input type="radio" required name="gender" value="Male">
-                        <p>Homem</p>
-                    </div>
-                    <div style="display:flex">
-                        <input type="radio" required name="gender" value="Female">
-                        <p>Mulher</p>
-                    </div>
-                    <div style="display:flex">
-                        <input type="radio" required name="gender" value="Other">
-                        <p>Outro</p>
+        <form method="POST" enctype="multipart/form-data">
+            <section>
+                <div class="flex-row flex-wrap-at-760 justify-center">
+                    <div class="glass flex-column align-center flex-column-at-760 width-fitcontent">
+                        <div>
+                            <h3>Nome de usuário:</h3>
+                            <input required class='width-100po minwidth-300' type="text" name="username" placeholder="nome de usuário">
+                        </div>
+                        <div>
+                            <h3>Nome inteiro:</h3>
+                            <input required class='width-100po minwidth-300' type="text" name="fullname" placeholder="nome inteiro">
+                        </div>
+                        <div>
+                            <h3>Email:</h3>
+                            <input required class='width-100po minwidth-300' type="email" name="email" placeholder="seu e-mail">
+                        </div>
+                        <div>
+                            <h3>Senha:</h3>
+                            <input required class='width-100po minwidth-300' type="password" name="password" placeholder="senha">
+                        </div>
+                        <div>
+                            <h3>Selecione o seu genêro:</h3>
+                            <div class="flex-row align-center gap10">
+                                <div class="flex-row align-center gap5">
+                                    <input type="radio" class="smallradio" required name="gender" value="Male" id="Male">
+                                    <label for="Male"><p>Homem</p></label>
+                                </div>
+                                <div class="flex-row align-center gap5">
+                                    <input type="radio" class="smallradio" required name="gender" value="Female" id="Female">
+                                    <label for="Female"><p>Mulher</p></label>
+                                </div>
+                                <div class="flex-row align-center gap5">
+                                    <input type="radio" class="smallradio" required name="gender" value="Other" id="Other">
+                                    <label for="Other"><p>Outro</p></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="aniversario"><h3>Data de nascimento (opcional):</h3></label>
+                            <input class='width-100po minwidth-300' type="date" name="aniversario" id="aniversario">
+                        </div>
+                        <div>
+                            <label for="foto-perfil"><h3>Foto de perfil (opcional): </h3></label>
+                            <input type="file" id="foto-perfil" name="foto-perfil" accept="image/jpg, image/jpeg, image/png">
+                        </div>
+
+
+
+                        <button type="submit" class="button glass self-align-center"><h1>Cadastrar Conta</h1></button>
+
+
+                        <p>Já tem uma conta?<a href="login.php">Faça login</a></p>
+                        <?php if(isset($cadastrou) && !$cadastrou):?>
+                            <p>esse usuário ja existe! tente outro nome de usuário.</p>
+                        <?php endif;?>
+                        <?php if(isset($error_code) && $error_code != null):?>
+                            <p><?=$error_code?></p>
+                        <?php endif;?>
                     </div>
                 </div>
-                <div>
-                    <label for="aniversario">coloque sua data de nascimento (opcional):</label>
-                    <input type="date" name="aniversario">
-                </div>
-                <div>
-                    <label for="foto-perfil">foto de perfil (opcional): </label>
-                    <input type="file" name="foto-perfil" accept="image/jpg, image/jpeg, image/png">
-                </div>
-
-
-
-                <button type="submit">Cadastrar Conta</button>
-
+            </section>
         </form>
-
-
-        <?php
-        if (isset($cadastrou) && !$cadastrou) {
-            echo "<p>esse usuário ja existe! tente outro nome de usuário.</p>";
-        }
-        if (isset($error_code) && $error_code != null) {
-            echo $error_code;
-        }
-        ?>
-        <p>
-            Já tem uma conta?<a href="login.php">Faça login</a>
-        </p>
     </section>
+   <div class="background" id="background">
+        <div class="background-img"></div>
+        <div class="background-img"></div>
+    </div>
+    <?php include __DIR__."/View/footer.php";?>
+
 </body>
+<script src="View/js/ajustarAlturaBackground.js"></script>
 
 </html>

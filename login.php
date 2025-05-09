@@ -27,29 +27,46 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
-    <link rel="shortcut icon" href="Captura_de_tela_2024-11-11_140326-removebg-preview (1).png" type="image/png">
     <title>Traitbook - Página de LogIn</title>
+    <link rel="stylesheet" href="View/style.css">
+    <link rel="shortcut icon" href="View/imgs/logo-icon.png" type="image/x-icon">
 </head>
 <body>
 
+    <?php include __DIR__."/View/header.php";?>
+
+
     <form method="POST">
-        <input required type="text" name="username_or_email" placeholder="nome de usuário ou email">
-        <input required type="password" name="password" placeholder="senha">
-        
-        <button type="submit">Login</button>
+        <section>
+            <div class="flex-row flex-wrap-at-760 justify-center">
+                <div class="glass flex-column align-center flex-column-at-760 width-fitcontent">
+
+                    <div>
+                        <h3 class="width-100po">Nome de usuário ou Email:</h3>
+                        <input required type="text" name="username_or_email" class="minwidth-300" placeholder="Nome de usuário ou email">
+                    </div>
+                    <div>
+                        <h3 class="width-100po">Sua senha:</h3>
+                        <input required type="password" name="password" class="minwidth-300" placeholder="Senha">
+                    </div>
+
+                    <button type="submit" class="button glass self-align-center"><h1>Login</h1></button>
+
+                    <p>Não tem uma conta? registre uma <a href="register.php">aqui!</a></p>
+                    <?php if(isset($logged_in) && empty($logged_in)): ?>
+                        <p>usuário ou senha estão errados, tente novamente! </p>
+                    <?php endif; ?>
+
+        </section>
     </form>
     
-    
-    
-    
-    <p>Não tem uma conta? registre uma <a href="register.php">aqui!</a></p>
-
-    <?php
-    if(isset($logged_in) && empty($logged_in)){
-        echo "usuário ou senha estão errados, tente novamente!";
-    }
-    ?>
-    </section>
+    <div class="background" id="background">
+        <div class="background-img"></div>
+        <div class="background-img"></div>
+    </div>
+    <?php include __DIR__."/View/footer.php";?>
 
 </body>
+<script src="View/js/ajustarAlturaBackground.js"></script>
+
 </html>

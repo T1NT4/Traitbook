@@ -55,7 +55,7 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
                                 <h1 class="textalign-center"><?=$question['text']?></h1>
                                 <br>
                                 <div class="flex-column align-center width-fitcontent">
-                                    <div class="flex-row justify-center align-center gap30">
+                                    <div class="flex-row justify-center align-center">
                                         <?php 
                                         foreach ($question['options'] as $option): ?>
                                             <input required type="radio" name="<?=$question['id']?>" value="<?=$option['value']?>">

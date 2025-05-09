@@ -146,6 +146,7 @@ a.button{
     text-align: center;
     background-color: rgba(255,255,255,0.1);
     box-shadow: none;
+    cursor: pointer;
 }
 .button.glass:hover{
     background-color: rgba(255,255,255,0.2);
@@ -164,7 +165,7 @@ a.button{
     box-sizing: border-box;
     padding:15px;
 }
-input[type='text'], select, input[type='date'], textarea{
+input[type='text'], select, input[type='date'], textarea, input[type='password'], input[type='email']{
     font-size: 1.5em;
     font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
     background-color: transparent;
@@ -180,6 +181,8 @@ input[type='radio']{
     appearance: none;
     width: 40px;
     height: 40px;
+    max-width: 5vw;
+    max-height: 5vw;
     background-color: rgba(255, 255, 255, 0.1);
     background-image: radial-gradient(circle,var(--text-color) 50%, transparent 55%);
     background-position: center;
@@ -197,14 +200,50 @@ input[type='radio']:checked{
 input[type='radio']:nth-child(1), input[type='radio']:nth-child(7){
     width: 70px;
     height: 70px;
+    max-width: 12.5vw;
+    max-height: 12.5vw;
 }
 input[type='radio']:nth-child(2), input[type='radio']:nth-child(6){
     width: 60px;
     height: 60px;
+    max-width: 10vw;
+    max-height: 10vw;
 }
 input[type='radio']:nth-child(3), input[type='radio']:nth-child(5){
     width: 50px;
     height: 50px;
+    max-width: 7.5vw;
+    max-height: 7.5vw;
+}
+input[type='radio'].smallradio{
+    width: 25px;
+    height: 25px;
+    border-width: 2px;
+}
+label{
+    cursor: pointer;
+}
+input[type='file']{
+    font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
+    font-size: 1em;
+}
+::file-selector-button{
+    font-family: 'Crimson Pro', 'Times New Roman', Times, serif;
+    color: var(--text-color);
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: none;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(7px);
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(123, 123, 123, 0.3);
+    box-sizing: border-box;
+}
+::file-selector-button:hover{
+    background-color: rgba(255,255,255,0.2);
 }
 ::placeholder{
     color: rgba(232, 232, 252, 0.75);
@@ -257,6 +296,9 @@ input.smallinput{
     display: flex;
     flex-direction: column;
     gap:inherit;
+}
+.gap5{
+    gap: 5px;
 }
 .gap10{
     gap:10px;
@@ -333,6 +375,12 @@ input.smallinput{
 .width-fitcontent{
     width: fit-content;
 }
+.width-50po{
+    width: 50%;
+}
+.width-80po{
+    width: 80%;
+}
 .width-100po{
     width: 100%;
 }
@@ -341,6 +389,9 @@ input.smallinput{
 }
 .width-200po{
     width: 200%;
+}
+.minwidth-300{
+    min-width: 300px
 }
 .grow-100{
     flex-grow: 1;
@@ -387,9 +438,11 @@ footer{
     justify-content: center;
     font-size: 25px;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+    padding:10px;
 }
 footer p{
     filter: none !important;
+    text-align: center;
 }
 @media (max-width:760px){
     .flex-wrap-at-760{
