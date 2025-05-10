@@ -3,26 +3,32 @@ include_once __DIR__."/Controller/LoginController.php";
 include_once __DIR__."/Controller/ApiController.php";
 include_once __DIR__."/config.php";
 
+
+
 if(!isset($_COOKIE['id_user']) AND empty($_GET)){
     header("Location: login.php");
 }
-if((!empty($_GET) AND isset($_COOKIE['id_user']) AND isset($_GET['view_user_id'])) AND
-    ($_COOKIE['id_user'] == $_GET['view_user_id'])){
-        header('Location: usuario.php');
-    }
 
 $ApiController = new ApiController();
 $LoginController = new LoginController($pdo);
 
-if(empty($_GET) AND !isset($_GET['view_user_id'])){
+if(!isset($_COOKIE['id_user']) AND empty($_GET)){
+    header("Location: login.php");
+}
+
+
+if(empty($_GET) AND !isset($_GET['view_username'])){
     $user = $LoginController->listarContaPorID($_COOKIE['id_user']);
     $is_own_user = true;
 }else{
-    $user = $LoginController->listarContaPorID($_GET['view_user_id']);
+    $user = $LoginController->listarContaPorUsername($_GET['view_username']);
     $is_own_user = false;
 
     if(isset($_COOKIE['id_user'])){
         $ownuser = $LoginController->listarContaPorID($_COOKIE['id_user']);
+        if($ownuser['username'] == $user['username']){
+            header('Location: usuario.php');
+        }
     }
 }
 

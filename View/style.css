@@ -458,6 +458,16 @@ input.smallinput{
 .pfp:hover label{
     opacity: 0.5;
 }
+.link-user{
+    transition: scale 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-decoration: none;
+}
+.link-user:hover, .link-user:focus{
+    scale: 1.025;
+}
+.link-user h1{
+    font-size: 2em;
+}
 div.footer-margin{
     height: 50px;
 }
