@@ -23,10 +23,7 @@ $cores = [
 ];
 $tem_pontos_fracos_ou_fortes = ($user['pontos_fortes'] != null) OR ($user['pontos_fortes'] != '') OR ($user['pontos_fracos'] != null) OR ($user['pontos_fracos'] != '');
 
-$nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
-if(!isset($user['nome_arquivo_fotoperfil'])){
-    $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
-}
+$nome_arquivo_fotoperfil = $LoginController->getFotoPerfil($user['nome_arquivo_fotoperfil'], __DIR__);
 
 if($user['pontos_fracos'] != null OR $user['pontos_fracos'] != ''){
     $pontos_fracos = json_decode($user['pontos_fracos'], true);

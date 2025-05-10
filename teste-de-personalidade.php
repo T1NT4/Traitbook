@@ -9,10 +9,7 @@ include_once __DIR__."/config.php";
 $Controller = new LoginController($pdo);
 $user = $Controller->listarContaPorID($_COOKIE['id_user']);
 
-$nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
-if(!isset($user['nome_arquivo_fotoperfil'])){
-    $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
-}
+$nome_arquivo_fotoperfil = $Controller->getFotoPerfil($user['nome_arquivo_fotoperfil'], __DIR__);
 
 function isPortInUse($host = 'localhost', $port = 14140) {
     $connection = @fsockopen($host, $port);

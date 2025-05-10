@@ -6,7 +6,7 @@ $Controller = new LoginController($pdo);
 
 if(isset($_COOKIE['id_user'])){
     $user = $Controller->listarContaPorID($_COOKIE['id_user']);
-    $nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
+    $nome_arquivo_fotoperfil = $Controller->getFotoPerfil($user['nome_arquivo_fotoperfil'], __DIR__);
 }
 ?>
 <!DOCTYPE html>

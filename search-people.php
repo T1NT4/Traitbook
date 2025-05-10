@@ -6,7 +6,7 @@ $Controller = new LoginController($pdo);
 
 if(isset($_COOKIE['id_user'])){
     $user = $Controller->listarContaPorID($_COOKIE['id_user']);
-    $nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
+    $nome_arquivo_fotoperfil = $Controller->getFotoPerfil($user['nome_arquivo_fotoperfil'], __DIR__);
 }
 
 $allusers = $Controller->listarContaTodas();
@@ -30,15 +30,17 @@ $allusers = $Controller->listarContaTodas();
         </section>
 
         <section class=" flex-row justify-center glass maxheight-600">
-            <?php foreach($allusers as $user): ?>
-                <a class="glass flex-row" href="usuario.php?=user_id=<?=$user['id_user']?>">
+            <?php foreach($allusers as $display_user): ?>
+                <a class="glass flex-row" href="usuario.php?view_user_id=<?=$display_user['id_user']?>">
                     <?php
-                        if(!isset($user['nome_arquivo_fotoperfil'])){
-                            $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
-                        }
+                        $display_nome_arquivo_fotoperfil = $Controller->getFotoPerfil($display_user['nome_arquivo_fotoperfil'], __DIR__);
                     ?>
+                    <div class="pfp">
+                        <img src="View/fotos_de_perfil/<?=$display_nome_arquivo_fotoperfil?>">
+                    </div>
                 </a>
             <?php endforeach;?>
+            <!-- ?view_user_id=123 -->
         </section>
     </section>
 

@@ -42,6 +42,16 @@ class LoginController{
     public function updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos){
         return $this->LoginModel->updateEverything($id_user, $username, $nome_inteiro, $email, $aniversario, $genero, $sobre_mim, $pontos_fracos, $pontos_fortes, $profissao_atual, $minhas_aspiracoes, $meus_principais_objetivos);
     }
+    public function getFotoPerfil($nome_arquivo_fotoperfil, $DIR){
+        if(!isset($nome_arquivo_fotoperfil)){
+            return '../imgs/DefaultPFP.png';
+        }else{
+            if(!file_exists($DIR."/View/fotos_de_perfil/$nome_arquivo_fotoperfil")){
+                return '../imgs/DefaultPFP.png';    
+            }
+        }
+        return $nome_arquivo_fotoperfil;
+    }
     // public function atualizarPlanoDoUsuario($username,$plano){
     //     return $this->LoginModel->atualizarPlano($username,$plano);
     // }

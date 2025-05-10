@@ -3,13 +3,28 @@ include_once __DIR__."/Controller/LoginController.php";
 include_once __DIR__."/Controller/ApiController.php";
 include_once __DIR__."/config.php";
 
-if(!isset($_COOKIE['id_user'])){
+if(!isset($_COOKIE['id_user']) AND empty($_GET)){
     header("Location: login.php");
 }
+if((!empty($_GET) AND isset($_COOKIE['id_user']) AND isset($_GET['view_user_id'])) AND
+    ($_COOKIE['id_user'] == $_GET['view_user_id'])){
+        header('Location: usuario.php');
+    }
+
 $ApiController = new ApiController();
 $LoginController = new LoginController($pdo);
 
-$user = $LoginController->listarContaPorID($_COOKIE['id_user']);
+if(empty($_GET) AND !isset($_GET['view_user_id'])){
+    $user = $LoginController->listarContaPorID($_COOKIE['id_user']);
+    $is_own_user = true;
+}else{
+    $user = $LoginController->listarContaPorID($_GET['view_user_id']);
+    $is_own_user = false;
+
+    if(isset($_COOKIE['id_user'])){
+        $ownuser = $LoginController->listarContaPorID($_COOKIE['id_user']);
+    }
+}
 
 if($user == null){
     header("Location: user-actions/logout.php");
@@ -72,9 +87,11 @@ if(!$tem_pontos_fracos){
     $pontos_fracos = json_decode($user['pontos_fracos'], true);
 }
 
-$nome_arquivo_fotoperfil = $user['nome_arquivo_fotoperfil'];
-if(!isset($user['nome_arquivo_fotoperfil'])){
-    $nome_arquivo_fotoperfil = '../imgs/DefaultPFP.png';
+$display_nome_arquivo_fotoperfil = $LoginController->getFotoPerfil($user['nome_arquivo_fotoperfil'], __DIR__);
+if(isset($ownuser)){
+    $nome_arquivo_fotoperfil = $LoginController->getFotoPerfil($ownuser['nome_arquivo_fotoperfil'], __DIR__);
+}elseif($is_own_user){
+    $nome_arquivo_fotoperfil = $display_nome_arquivo_fotoperfil;
 }
 
 
@@ -95,9 +112,7 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
         <div class="flex-row height-400 flex-wrap-at-760">
             <div class="glass width-150po flex-row align-start flex-column-at-760">
                 <div class="pfp">
-                    <?php if(isset($user)):?>
-                        <img src="View/fotos_de_perfil/<?=$nome_arquivo_fotoperfil?>">
-                    <?php endif;?>
+                    <img src="View/fotos_de_perfil/<?=$display_nome_arquivo_fotoperfil?>">
                 </div>
                 <br>
                 <div class="flex-column nogap grow-100">
@@ -116,14 +131,16 @@ if(!isset($user['nome_arquivo_fotoperfil'])){
                     <h3>Data de nascimento:</h3>
                     <h1><?=$aniversario->format('d/m/Y')?></h1>
                     <br>
-                    <div class="flex-row gap10 self-align-center">
-                        <a class="button glass self-align-center" href="edit_perfil.php">
-                            <h1>Editar Perfil</h1>
-                        </a>
-                        <a class="button glass self-align-center" href="user-actions/logout.php">
-                            <h1>Sair da conta</h1>
-                        </a>
-                    </div>
+                    <?php if($is_own_user):?>
+                        <div class="flex-row gap10 self-align-center">
+                            <a class="button glass self-align-center" href="edit_perfil.php">
+                                <h1>Editar Perfil</h1>
+                            </a>
+                            <a class="button glass self-align-center" href="user-actions/logout.php">
+                                <h1>Sair da conta</h1>
+                            </a>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
             <?php if(!(($user['sobre_mim'] == null) OR ($user['sobre_mim'] == ''))):?>
