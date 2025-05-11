@@ -3,7 +3,7 @@
 //Configurações básicas
 
 $host = 'localhost';
-$dbname = 'projeto_de_vida';
+$dbname = 'traitbook';
 $username = 'root';
 $password = '';
 

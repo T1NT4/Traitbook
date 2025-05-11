@@ -35,14 +35,18 @@ $Controller = new LoginController($pdo);
 
 $contaUsername = $Controller->listarContaPorUsername($username);
 
-$usernameValid = $contaUsername['id_user'] == $_COOKIE['id_user'];
+$usernameValid = $contaUsername['id_user'] == intval($_COOKIE['id_user']);
+if(!$usernameValid){
+    $usernameValid = empty($contaUsername);
+}
 
-var_dump($usernameValid);
 
 $contaEmail = $Controller->listarContaPorEmail($email);
 
-$emailValid = $contaEmail['id_user'] == $_COOKIE['id_user'];
-
+$emailValid = $contaEmail['id_user'] == intval($_COOKIE['id_user']);
+if(!$emailValid){
+    $emailValid = empty($contaEmail);
+}
 
 if($usernameValid AND $emailValid){
 
@@ -79,8 +83,15 @@ if($usernameValid AND $emailValid){
         
     header('Location: ../usuario.php');
 }else{
-    $edit_perfil_error_code = 'Este Email ou Nome de Usuário já está sendo usado, tente novamente.';
-
+    if(!$usernameValid){
+        $edit_perfil_error_code = 'Este Nome de Usuário já está sendo usado, tente novamente.';
+    }
+    if(!$emailValid){
+        $edit_perfil_error_code = 'Este Email já está sendo usado, tente novamente.';
+    }
+    if(!$emailValid AND !$usernameValid){
+        $edit_perfil_error_code = 'Este Email e Nome de Usuário já estão sendo usados, tente novamente.';
+    }
     setcookie("edit_perfil_error_code",$edit_perfil_error_code, time()+10, "/");
     header('Location: ../edit_perfil.php');
 }

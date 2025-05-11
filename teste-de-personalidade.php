@@ -44,14 +44,24 @@ function isPortInUse($host = 'localhost', $port = 14140) {
         if ($raw_questions === false) {
             // Se o servidor ainda não está iniciando, inicia o .bat
             if (!isPortInUse()) {
-                pclose(popen('start "Server" '.__DIR__.'\start_api_server.bat', 'r'));
+                if(!is_dir(__DIR__.'/../16personalities-api')){
+                    pclose(popen('start /B '.__DIR__.'\batch\install_api_server.bat', 'r'));
+                    
+                    echo "<meta http-equiv='refresh' content='10'>";
+                    echo "<h1 class='textalign-center'>Instalando o servidor 16personalities na sua máquina, aguarde...</h1>";
+                    echo "<br>";
+                    echo "<div class='open-server-loadbar self-align-center'></div>";
+                    exit;
+                }
+
+                pclose(popen('start "Running Server" '.__DIR__.'\batch\start_api_server.bat', 'r'));
             }
         
             // Recarrega a página até o servidor estar disponível
             echo "<meta http-equiv='refresh' content='2'>";
             echo "<h1 class='textalign-center'>Aguardando servidor iniciar...</h1>";
             exit;
-        }
+        }   
         
         // API respondeu com sucesso
         $questions = json_decode($raw_questions, true);
@@ -62,11 +72,11 @@ function isPortInUse($host = 'localhost', $port = 14140) {
             <div class="flex-row height-400 flex-wrap-at-760 justify-center width-100po">
                 <div class="glass flex-column">
                     <?php 
-                    $count = 1;
+                    $count = -1;
                     foreach ($questions as $question):?>
                         <?php 
                         $count += 1;
-                        if($count % 5 == 0):?>
+                        if($count % 2.5 == 0):?>
                             <div id="question-<?=$count/5?>" class="flex-column align-center">
                                 <h1 class="textalign-center"><?=$question['text']?></h1>
                                 <br>

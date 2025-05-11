@@ -486,6 +486,46 @@ footer p{
     filter: none !important;
     text-align: center;
 }
+.open-server-loadbar{
+    width: 600px;
+    height: 40px;
+    max-width: 80vw;
+    border-radius: 900px;
+    border: 4px solid var(--secondary-color);
+    overflow: hidden;
+    display: flex;
+}
+.open-server-loadbar::after{
+    content: '';
+    height: 100%;
+    width: 0%;
+    background-color: var(--primary-color);
+    animation: load-bar 10s linear;
+    animation-fill-mode: forwards;
+}
+@keyframes load-bar {
+    0%{
+        width: 0%;
+    }
+    23%{
+        width: 10%;
+    }
+    34%{
+        width: 50%;
+    }
+    80%{
+        width: 68%;
+    }
+    90%{
+        width: 80%;
+    }
+    95%{
+        width: 83%;
+    }
+    100%{
+        width: 100%;
+    }
+}
 @media (max-width:760px){
     .flex-wrap-at-760{
         flex-wrap: wrap;
