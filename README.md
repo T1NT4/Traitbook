@@ -1,4 +1,4 @@
-# teste-de-personalidade
+# Traitbook
 Projeto para apresentar, tipo um facebook sobre personalidades
 
 
