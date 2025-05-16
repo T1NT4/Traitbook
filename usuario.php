@@ -241,9 +241,11 @@ if(isset($ownuser)){
                                     </div>
                                 </div>
                             <?php endforeach;?>
-                            <a class="button glass self-align-center" href="teste-de-personalidade.php">
-                                <h1>Refazer teste de personalidade</h1>
-                            </a>
+                            <?php if($is_own_user):?>
+                                <a class="button glass self-align-center" href="teste-de-personalidade.php">
+                                    <h1>Refazer teste de personalidade</h1>
+                                </a>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>
