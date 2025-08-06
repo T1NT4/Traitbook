@@ -29,7 +29,7 @@ $allusers = $Controller->listarContaTodas();
             <input type="text" id="pesquisar" placeholder="Pesquise alguém!" class="width-500 maxwidth90" onchange="searchuser()">
         </section>
 
-        <section class="flex-row justify-center glass maxheight-600" id="allusers">
+        <section class="flex-row justify-center glass" id="allusers">
             <?php foreach($allusers as $display_user): ?>
                 <a class="glass flex-row link-user" href="usuario.php?view_username=<?=$display_user['username']?>">
                     <?php
