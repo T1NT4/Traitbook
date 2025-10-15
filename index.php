@@ -29,7 +29,7 @@ if(isset($_COOKIE['id_user'])){
             <p>Descubra, entenda e compartilhe sua personalidade com o mundo. O Traitbook ajuda você a explorar traços únicos da sua identidade.</p>
             <div class="flex-row">
                 <?php if(!isset($_COOKIE['id_user'])):?>
-                    <a href="login.php" class="button glass"><h2>Entrar</h2></a>
+                    <a href="LoginAccount.php" class="button glass"><h2>Entrar</h2></a>
                 <?php else:?>
                     <a href="usuario.php" class="button glass"><h2>Página do usuário</h2></a>
                 <?php endif;?>

@@ -4,7 +4,7 @@ include_once __DIR__."/Controller/ApiController.php";
 include_once __DIR__."/config.php";
 
 if(!isset($_COOKIE['id_user'])){
-    header("Location: login.php");
+    header("Location: LoginAccount.php");
 }
 $LoginController = new LoginController($pdo);
 

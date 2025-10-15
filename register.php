@@ -26,7 +26,7 @@ if (!empty($_POST)) {
     $error_code = 0;
 
     if ($cadastrou && $error_code == null) {
-        header('Location: Login.php');
+        header('Location: LoginAccount.php');
     }
 }
 
@@ -110,7 +110,7 @@ if(isset($_COOKIE['id_user'])){
                         <button type="submit" class="button glass self-align-center"><h1>Cadastrar Conta</h1></button>
 
 
-                        <p class="textalign-center">Já tem uma conta?<a href="login.php">Faça login</a></p>
+                        <p class="textalign-center">Já tem uma conta?<a href="LoginAccount.php">Faça login</a></p>
                         
                     </div>
                 </div>
