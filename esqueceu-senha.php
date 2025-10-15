@@ -11,7 +11,7 @@ if(!empty($_POST)){
         $Controller->updateUserWithEmail($_POST['email'],$_POST['password']);
         
         setcookie("mudou_senha",'Senha mudada com sucesso!', time()+10, "/");
-        header('Location: LoginAccount.php');
+        header('Location: login.php');
     };
 
     $error_code = 'Email incorreto! Tente novamente';
